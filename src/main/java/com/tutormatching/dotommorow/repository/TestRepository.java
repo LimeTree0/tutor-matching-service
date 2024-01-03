@@ -1,6 +1,6 @@
 package com.tutormatching.dotommorow.repository;
 
-import com.tutormatching.dotommorow.repository.mapper.TestMapper;
+import com.tutormatching.dotommorow.repository.mapper.test.TestMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

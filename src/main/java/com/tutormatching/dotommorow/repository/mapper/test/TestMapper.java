@@ -1,4 +1,4 @@
-package com.tutormatching.dotommorow.repository.mapper;
+package com.tutormatching.dotommorow.repository.mapper.test;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;

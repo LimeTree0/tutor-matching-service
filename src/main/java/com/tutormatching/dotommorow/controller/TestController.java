@@ -18,9 +18,6 @@ public class TestController {
 
     @GetMapping("/test")
     public String test() {
-        for (int i = 0; i < 10; i++) {
-            testService.save("test" + i);
-        }
         List<String> testAll = testService.findAll();
         for (String test : testAll) {
             log.info("test: {}", test);

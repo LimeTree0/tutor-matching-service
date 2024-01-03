@@ -5,3 +5,17 @@ create table test
     name varchar(30),
     primary key (id)
 );
+
+drop table if exists users CASCADE;
+create table users
+(
+    userid char(50) not null primary key,
+    region_id integer not null,
+    userpw char(50) not null,
+    gender char(1),
+    age integer,
+    username char(50),
+    profile_image char(100),
+    phoneNumber char(20),
+    signup_date DATE
+)
