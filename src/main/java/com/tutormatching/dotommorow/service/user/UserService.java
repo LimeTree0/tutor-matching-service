@@ -1,8 +1,8 @@
-package com.tutormatching.dotommorow.service;
+package com.tutormatching.dotommorow.service.user;
 
-import com.tutormatching.dotommorow.dto.UserDto;
-import com.tutormatching.dotommorow.dto.UserUpdateDto;
-import com.tutormatching.dotommorow.repository.UserRepository;
+import com.tutormatching.dotommorow.dto.user.UserDto;
+import com.tutormatching.dotommorow.dto.user.UserUpdateDto;
+import com.tutormatching.dotommorow.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

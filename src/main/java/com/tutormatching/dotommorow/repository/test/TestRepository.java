@@ -1,4 +1,4 @@
-package com.tutormatching.dotommorow.repository;
+package com.tutormatching.dotommorow.repository.test;
 
 import com.tutormatching.dotommorow.repository.mapper.test.TestMapper;
 import lombok.RequiredArgsConstructor;

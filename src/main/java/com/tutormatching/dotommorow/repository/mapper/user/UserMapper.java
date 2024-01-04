@@ -1,6 +1,6 @@
 package com.tutormatching.dotommorow.repository.mapper.user;
 
-import com.tutormatching.dotommorow.dto.UserDto;
+import com.tutormatching.dotommorow.dto.user.UserDto;
 import org.apache.ibatis.annotations.*;
 
 import java.time.LocalDateTime;

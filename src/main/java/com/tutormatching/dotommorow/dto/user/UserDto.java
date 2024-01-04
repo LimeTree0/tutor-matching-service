@@ -1,9 +1,11 @@
-package com.tutormatching.dotommorow.dto;
+package com.tutormatching.dotommorow.dto.user;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+
+// 유저 조회 정보를 받아오는 DTO
 
 @Getter
 @Setter

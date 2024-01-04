@@ -1,7 +1,9 @@
-package com.tutormatching.dotommorow.dto;
+package com.tutormatching.dotommorow.dto.user;
 
 import lombok.Getter;
 import lombok.Setter;
+
+// 유저 수정 정보를 받아오는 DTO
 
 @Getter
 @Setter

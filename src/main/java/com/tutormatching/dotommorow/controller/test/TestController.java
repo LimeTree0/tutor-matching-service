@@ -1,10 +1,9 @@
-package com.tutormatching.dotommorow.controller;
+package com.tutormatching.dotommorow.controller.test;
 
-import com.tutormatching.dotommorow.service.TestService;
+import com.tutormatching.dotommorow.service.test.TestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;

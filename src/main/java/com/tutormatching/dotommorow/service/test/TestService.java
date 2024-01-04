@@ -1,6 +1,6 @@
-package com.tutormatching.dotommorow.service;
+package com.tutormatching.dotommorow.service.test;
 
-import com.tutormatching.dotommorow.repository.TestRepository;
+import com.tutormatching.dotommorow.repository.test.TestRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
