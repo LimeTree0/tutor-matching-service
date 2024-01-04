@@ -38,7 +38,7 @@ create table student
 drop table if exists teacher CASCADE;
 create table teacher
 (
-    teacherid integer not null primary key,
+    teacherid integer not null auto_increment primary key,
     userid char(50) not null,
     region_id integer not null,
     range char(50),

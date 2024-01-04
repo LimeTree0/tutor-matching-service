@@ -39,7 +39,7 @@ public class StudentService {
 
     // ID를 이용한 학생 정보 삭제
     public void delete(String userId) {
-        userRepository.delete(userId);
+        studentRepository.delete(userId);
     }
 
 }

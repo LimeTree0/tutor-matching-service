@@ -5,13 +5,12 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-// 선생님 조회 정보를 받아오는 DTO
+// 선생님 수정 정보를 받아오는 DTO
 
 @Getter
 @Setter
-public class TeacherDto {
-    private Integer teacherId;
-    private String userId;
+public class TeacherUpdateDto {
+
     private Integer regionId;
     private LocalDateTime yail;
     private LocalDateTime time;
@@ -20,11 +19,10 @@ public class TeacherDto {
     private String classLevel;
     private String academic;
 
-    public TeacherDto(Integer teacherId, String userId, Integer regionId,
-                      LocalDateTime yail, LocalDateTime time, String comment,
-                      String category, String classLevel, String academic) {
-        this.teacherId = teacherId;
-        this.userId = userId;
+    public TeacherUpdateDto(Integer regionId,
+                            LocalDateTime yail, LocalDateTime time, String comment,
+                            String category, String classLevel, String academic) {
+
         this.regionId = regionId;
         this.yail = yail;
         this.time = time;
