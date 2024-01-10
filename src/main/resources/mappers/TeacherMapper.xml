@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tutormatching.dotommorow.repository.mapper.user.TeacherMapper">
+
+    <resultMap id="userMap" type="com.tutormatching.dotommorow.dto.user.UserDto">
+        <id property="userId" column="userid"/>
+        <result property="regionId" column="region_id"/>
+        <result property="password" column="userpw"/>
+        <result property="gender" column="gender"/>
+        <result property="age" column="age"/>
+        <result property="userName" column="username"/>
+        <result property="profileImage" column="profile_image"/>
+        <result property="phoneNumber" column="phoneNumber"/>
+        <result property="signUpDate" column="signup_date"/>
+    </resultMap>
+
+    <resultMap id="teacherWithUserMap" type="com.tutormatching.dotommorow.dto.user.TeacherWithUserDto">
+        <id property="teacherId" column="teacherid"/>
+        <result property="userId" column="userid"/>
+        <result property="regionId" column="region_id"/>
+        <result property="range" column="range"/>
+        <result property="yail" column="yail"/>
+        <result property="time" column="time"/>
+        <result property="comment" column="comment"/>
+        <result property="category" column="category"/>
+        <result property="classLevel" column="class"/>
+        <result property="academic" column="academic"/>
+        <association property="userDto" resultMap="userMap"/>
+    </resultMap>
+
+    <select id="selectByIdWithUser" resultMap="teacherWithUserMap">
+        SELECT *
+        FROM users u
+                 JOIN teacher s on u.userid = s.userid
+        where u.userid = #{userId}
+    </select>
+</mapper>

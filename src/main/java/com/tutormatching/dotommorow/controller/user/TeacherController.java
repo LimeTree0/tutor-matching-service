@@ -28,6 +28,9 @@ public class TeacherController {
         teacherService.update("test", new TeacherUpdateDto(1, null, null, "update", null, null, null));
         TeacherDto test = teacherService.findById("test");
         log.info("test: {}", test.getComment());
+
+        TeacherWithUserDto teacher = teacherService.selectByIdWithUser("test");
+        log.info("test: {} {}", teacher.getComment(), teacher.getUserDto().getUserId());
         return "teacher 실행";
     }
 }

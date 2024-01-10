@@ -1,6 +1,7 @@
 package com.tutormatching.dotommorow.repository.mapper.user;
 
 import com.tutormatching.dotommorow.dto.user.StudentDto;
+import com.tutormatching.dotommorow.dto.user.StudentWithUserDto;
 import com.tutormatching.dotommorow.dto.user.UserDto;
 import org.apache.ibatis.annotations.*;
 
@@ -52,4 +53,6 @@ public interface StudentMapper {
     // 학생 정보 삭제
     @Delete("DELETE FROM student WHERE userid = #{param1}")
     void delete(String userId);
+
+    StudentWithUserDto selectByIdWithUser(String userId);
 }

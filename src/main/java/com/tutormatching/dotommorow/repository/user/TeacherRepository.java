@@ -3,6 +3,7 @@ package com.tutormatching.dotommorow.repository.user;
 import com.tutormatching.dotommorow.dto.user.TeacherDto;
 import com.tutormatching.dotommorow.dto.user.TeacherSaveDto;
 import com.tutormatching.dotommorow.dto.user.TeacherUpdateDto;
+import com.tutormatching.dotommorow.dto.user.TeacherWithUserDto;
 import com.tutormatching.dotommorow.repository.mapper.user.TeacherMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -39,5 +40,9 @@ public class TeacherRepository {
     // ID를 이용한 선생님 정보 삭제
     public void delete(String userId) {
         teacherMapper.delete(userId);
+    }
+
+    public TeacherWithUserDto selectByIdWithUser(String userId) {
+        return teacherMapper.selectByIdWithUser(userId);
     }
 }

@@ -2,6 +2,7 @@ package com.tutormatching.dotommorow.repository.mapper.user;
 
 import com.tutormatching.dotommorow.dto.user.StudentDto;
 import com.tutormatching.dotommorow.dto.user.TeacherDto;
+import com.tutormatching.dotommorow.dto.user.TeacherWithUserDto;
 import org.apache.ibatis.annotations.*;
 
 import java.time.LocalDateTime;
@@ -51,4 +52,6 @@ public interface TeacherMapper {
     // 선생님 정보 삭제
     @Delete("DELETE FROM teacher WHERE userid = #{param1}")
     void delete(String userId);
+
+    public TeacherWithUserDto selectByIdWithUser(String userId);
 }

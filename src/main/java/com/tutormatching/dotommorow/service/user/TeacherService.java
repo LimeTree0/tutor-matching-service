@@ -3,6 +3,7 @@ package com.tutormatching.dotommorow.service.user;
 import com.tutormatching.dotommorow.dto.user.TeacherDto;
 import com.tutormatching.dotommorow.dto.user.TeacherSaveDto;
 import com.tutormatching.dotommorow.dto.user.TeacherUpdateDto;
+import com.tutormatching.dotommorow.dto.user.TeacherWithUserDto;
 import com.tutormatching.dotommorow.repository.user.TeacherRepository;
 import com.tutormatching.dotommorow.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -40,6 +41,10 @@ public class TeacherService {
     // ID를 이용한 선생님 정보 삭제
     public void delete(String userId) {
         teacherRepository.delete(userId);
+    }
+
+    public TeacherWithUserDto selectByIdWithUser(String userId) {
+        return teacherRepository.selectByIdWithUser(userId);
     }
 
 }

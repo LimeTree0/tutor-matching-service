@@ -13,6 +13,7 @@ public class TeacherDto {
     private Integer teacherId;
     private String userId;
     private Integer regionId;
+    private String range;
     private LocalDateTime yail;
     private LocalDateTime time;
     private String comment;
@@ -21,11 +22,13 @@ public class TeacherDto {
     private String academic;
 
     public TeacherDto(Integer teacherId, String userId, Integer regionId,
-                      LocalDateTime yail, LocalDateTime time, String comment,
-                      String category, String classLevel, String academic) {
+                      String range, LocalDateTime yail, LocalDateTime time,
+                      String comment, String category, String classLevel,
+                      String academic) {
         this.teacherId = teacherId;
         this.userId = userId;
         this.regionId = regionId;
+        this.range = range;
         this.yail = yail;
         this.time = time;
         this.comment = comment;

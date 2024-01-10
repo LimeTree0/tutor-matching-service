@@ -41,4 +41,8 @@ public class StudentRepository {
     public void delete(String userId) {
         studentMapper.delete(userId);
     }
+
+    public StudentWithUserDto selectByIdWithUser(String userId) {
+        return studentMapper.selectByIdWithUser(userId);
+    }
 }

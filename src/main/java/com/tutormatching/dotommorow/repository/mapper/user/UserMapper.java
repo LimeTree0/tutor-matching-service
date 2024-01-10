@@ -34,7 +34,7 @@ public interface UserMapper {
     List<UserDto> findAll();
 
     // 특정 회원 정보 조회
-    @Select("SELECT * FROM users WHERE userid = #{param1}")
+//    @Select("SELECT * FROM users WHERE userid = #{param1}")
     UserDto findById(String userId);
 
     // 회원 정보 삭제
