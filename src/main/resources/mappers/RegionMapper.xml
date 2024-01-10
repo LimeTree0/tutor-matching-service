@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tutormatching.dotommorow.repository.mapper.region.RegionMapper">
+
+    <resultMap id="regionSaveMap" type="com.tutormatching.dotommorow.dto.region.RegionSaveDto">
+        <result property="si" column="region_depth1"/>
+        <result property="gun" column="region_depth2"/>
+        <result property="gu" column="region_depth3"/>
+    </resultMap>
+
+    <insert id="save" useGeneratedKeys="true" parameterType="String">
+        INSERT INTO region(region_depth1, region_depth2, region_depth3)
+        VALUES (#{si}, #{gun}, #{gu})
+    </insert>
+</mapper>

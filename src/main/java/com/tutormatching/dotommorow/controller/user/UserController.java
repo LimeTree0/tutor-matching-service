@@ -1,11 +1,13 @@
 package com.tutormatching.dotommorow.controller.user;
 
 import com.tutormatching.dotommorow.dto.user.UserDto;
+import com.tutormatching.dotommorow.dto.user.UserJoinDto;
 import com.tutormatching.dotommorow.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDateTime;
 
@@ -16,14 +18,16 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/user")
+    @GetMapping("/user/joinForm")
     public String user() {
-        UserDto userDto = new UserDto("userid", 1L, "password", "G", 20, "userName", "profileImage", "phonenumber", LocalDateTime.now());
-        userService.save(userDto);
+        return "member/joinForm";
+    }
 
-        UserDto userid = userService.findById("userid");
-        log.info("userid: {}", userid.getUserId());
-        return "user";
+    @PostMapping("/user/join")
+    public String join(UserJoinDto userDto) {
+        log.info("userDto: {}", userDto);
+        userService.save(userDto);
+        return "redirect:/";
     }
 
 }

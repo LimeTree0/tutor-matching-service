@@ -1,7 +1,9 @@
 package com.tutormatching.dotommorow.service.user;
 
 import com.tutormatching.dotommorow.dto.user.UserDto;
+import com.tutormatching.dotommorow.dto.user.UserJoinDto;
 import com.tutormatching.dotommorow.dto.user.UserUpdateDto;
+import com.tutormatching.dotommorow.repository.region.RegionRepository;
 import com.tutormatching.dotommorow.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,9 +19,12 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final RegionRepository regionRepository;
 
     // 회원 정보 등록
-    public void save(UserDto userDto) {
+    public void save(UserJoinDto userJoinDto) {
+        long savedRegionId = regionRepository.save(userJoinDto.getSi(), userJoinDto.getGun(), userJoinDto.getGu());
+        UserDto userDto = userJoinDto.transferToUserDto(userJoinDto, savedRegionId);
         userRepository.save(userDto);
     }
 

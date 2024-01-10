@@ -50,3 +50,12 @@ create table teacher
     academic char(50),
     foreign key (userid) references users(userid)
 );
+
+drop table if exists region CASCADE;
+create table region
+(
+    region_id integer not null auto_increment primary key,
+    region_depth1 char(50) not null,
+    region_depth2 char(50) not null,
+    region_depth3 char(50) not null
+);

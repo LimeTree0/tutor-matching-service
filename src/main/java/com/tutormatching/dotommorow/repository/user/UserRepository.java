@@ -1,6 +1,7 @@
 package com.tutormatching.dotommorow.repository.user;
 
 import com.tutormatching.dotommorow.dto.user.UserDto;
+import com.tutormatching.dotommorow.dto.user.UserJoinDto;
 import com.tutormatching.dotommorow.dto.user.UserUpdateDto;
 import com.tutormatching.dotommorow.repository.mapper.user.UserMapper;
 import lombok.RequiredArgsConstructor;
