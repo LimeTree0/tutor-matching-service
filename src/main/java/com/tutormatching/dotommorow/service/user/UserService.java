@@ -6,6 +6,8 @@ import com.tutormatching.dotommorow.dto.user.UserUpdateDto;
 import com.tutormatching.dotommorow.repository.region.RegionRepository;
 import com.tutormatching.dotommorow.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,17 +16,21 @@ import java.util.List;
  * User에 대한 정보를 CRUD할 수 있는 서비스 클래스
  */
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
     private final RegionRepository regionRepository;
+    private final PasswordEncoder passwordEncoder;
 
     // 회원 정보 등록
     public void save(UserJoinDto userJoinDto) {
+        userJoinDto.setPassword(passwordEncoder.encode(userJoinDto.getPassword()));
         long savedRegionId = regionRepository.save(userJoinDto.getSi(), userJoinDto.getGun(), userJoinDto.getGu());
         UserDto userDto = userJoinDto.transferToUserDto(userJoinDto, savedRegionId);
+        log.info("[UserService] userDto: {}", userDto);
         userRepository.save(userDto);
     }
 

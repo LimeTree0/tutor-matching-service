@@ -1,6 +1,5 @@
 package com.tutormatching.dotommorow.controller.user;
 
-import com.tutormatching.dotommorow.dto.user.UserDto;
 import com.tutormatching.dotommorow.dto.user.UserJoinDto;
 import com.tutormatching.dotommorow.service.user.UserService;
 import lombok.RequiredArgsConstructor;
@@ -8,8 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import java.time.LocalDateTime;
 
 @Slf4j
 @Controller
@@ -29,5 +26,9 @@ public class UserController {
         userService.save(userDto);
         return "redirect:/";
     }
+//    @GetMapping("/user/myPage/")
+//    public String myPage() {
+//        return "member/myPage";
+//    }
 
 }

@@ -1,10 +1,12 @@
 package com.tutormatching.dotommorow.repository.user;
 
+import com.tutormatching.dotommorow.dto.user.UserDetailsCustomDto;
 import com.tutormatching.dotommorow.dto.user.UserDto;
 import com.tutormatching.dotommorow.dto.user.UserJoinDto;
 import com.tutormatching.dotommorow.dto.user.UserUpdateDto;
 import com.tutormatching.dotommorow.repository.mapper.user.UserMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.List;
  */
 @Repository
 @RequiredArgsConstructor
+@Slf4j
 public class UserRepository {
 
     private final UserMapper userMapper;
@@ -44,8 +47,17 @@ public class UserRepository {
         return userMapper.findById(userId);
     }
 
+    // 로그인 시 필요한 회원 정보 조회
+    public UserDetailsCustomDto findByUserIdWithUserDetailCustomDto(String userId) {
+        UserDetailsCustomDto customDto = userMapper.findByIdWithUserDetailsCustomDto(userId);
+        log.info("[UserRepository] customDto: {}", customDto);
+        return customDto;
+    }
+
     // ID를 이용한 회원 정보 삭제
     public void delete(String userId) {
         userMapper.delete(userId);
     }
+
+
 }

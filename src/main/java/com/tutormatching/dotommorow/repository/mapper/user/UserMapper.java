@@ -1,5 +1,6 @@
 package com.tutormatching.dotommorow.repository.mapper.user;
 
+import com.tutormatching.dotommorow.dto.user.UserDetailsCustomDto;
 import com.tutormatching.dotommorow.dto.user.UserDto;
 import org.apache.ibatis.annotations.*;
 
@@ -33,6 +34,10 @@ public interface UserMapper {
     @Select("SELECT * FROM users ORDER BY userid ASC")
     List<UserDto> findAll();
 
+    // 로그인 시 필요한 회원 정보 조회
+    @Select("SELECT userid, userpw  FROM users WHERE userid = #{userId}")
+    UserDetailsCustomDto findByIdWithUserDetailsCustomDto(@Param("userId") String userId);
+
     // 특정 회원 정보 조회
 //    @Select("SELECT * FROM users WHERE userid = #{param1}")
     UserDto findById(String userId);
@@ -40,4 +45,6 @@ public interface UserMapper {
     // 회원 정보 삭제
     @Delete("DELETE FROM users WHERE userid = #{param1}")
     void delete(String userId);
+
+
 }

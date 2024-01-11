@@ -23,4 +23,9 @@ public class TestController {
         }
         return "index";
     }
+
+    @GetMapping("/")
+    public String index() {
+        return "index";
+    }
 }
