@@ -1,5 +1,6 @@
 package com.tutormatching.dotommorow.service.user;
 
+import com.tutormatching.dotommorow.dto.region.RegionDto;
 import com.tutormatching.dotommorow.dto.user.UserDto;
 import com.tutormatching.dotommorow.dto.user.UserJoinDto;
 import com.tutormatching.dotommorow.dto.user.UserUpdateDto;
@@ -35,8 +36,15 @@ public class UserService {
     }
 
     // 회원 정보 수정
-    public void update(String userId, UserUpdateDto userUpdateDto) {
-        userRepository.update(userId, userUpdateDto);
+    public void update(UserUpdateDto userUpdateDto) {
+        UserDto userDto = userRepository.findById(userUpdateDto.getUserId());
+        Long regionId = userDto.getRegionId();
+        RegionDto regionDto = regionRepository.findById(regionId);
+        regionDto.setSi(userUpdateDto.getSi());
+        regionDto.setGun(userUpdateDto.getGun());
+        regionDto.setGu(userUpdateDto.getGu());
+        regionRepository.update(regionDto);
+        userRepository.update(userUpdateDto);
     }
 
     // 회원 정보 모두 조회
@@ -46,7 +54,10 @@ public class UserService {
 
     // ID를 이용한 회원 정보 조회
     public UserDto findById(String userId) {
-        return userRepository.findById(userId);
+        UserDto userDto = userRepository.findById(userId);
+        RegionDto regionDto = regionRepository.findById(userDto.getRegionId());
+        userDto.setRegion(regionDto);
+        return userDto;
     }
 
     // ID를 이용한 회원 정보 삭제

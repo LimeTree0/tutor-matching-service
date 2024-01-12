@@ -4,14 +4,35 @@
 
 <mapper namespace="com.tutormatching.dotommorow.repository.mapper.region.RegionMapper">
 
-    <resultMap id="regionSaveMap" type="com.tutormatching.dotommorow.dto.region.RegionSaveDto">
+    <resultMap id="regionResultMap" type="com.tutormatching.dotommorow.dto.region.RegionDto">
+        <result property="regionId" column="region_id"/>
         <result property="si" column="region_depth1"/>
         <result property="gun" column="region_depth2"/>
         <result property="gu" column="region_depth3"/>
     </resultMap>
 
+    <parameterMap id="regionParameterMap" type="com.tutormatching.dotommorow.dto.region.RegionDto">
+        <parameter property="regionId"/>
+        <parameter property="si"/>
+        <parameter property="gun"/>
+        <parameter property="gu"/>
+    </parameterMap>
+
+
     <insert id="save" useGeneratedKeys="true" parameterType="String">
         INSERT INTO region(region_depth1, region_depth2, region_depth3)
         VALUES (#{si}, #{gun}, #{gu})
     </insert>
+
+    <select id="findById" resultMap="regionResultMap">
+        SELECT *
+        FROM region
+        WHERE region_id = #{regionId}
+    </select>
+
+    <update id="update" parameterMap="regionParameterMap">
+        UPDATE region
+        SET region_depth1 = #{si}, region_depth2 = #{gun}, region_depth3 = #{gu}
+        WHERE region_id = #{regionId}
+    </update>
 </mapper>

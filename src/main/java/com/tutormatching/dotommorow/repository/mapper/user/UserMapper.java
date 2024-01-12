@@ -21,14 +21,14 @@ public interface UserMapper {
             , LocalDateTime signUpDate);
 
     // 회원 정보 수정
-    @Update("UPDATE users set region_id = #{param2}, " +
-            "gender = #{param3}, " +
-            "age = #{param4}, " +
-            "username = #{param5}, " +
-            "profile_image = #{param6}, " +
-            "phoneNumber = #{param7} where userid = #{param1}")
-    void update(String userId, Long regionId, String gender
-            , Integer age, String userName, String profileImage, String phoneNumber);
+    @Update("UPDATE users set gender = #{gender}, " +
+            "age = #{age}, " +
+            "username = #{userName}, " +
+            "profile_image = #{profileImage}, " +
+            "phoneNumber = #{phoneNumber} where userid = #{userId}")
+    void update(@Param("userId") String userId, @Param("gender") String gender
+            ,@Param("age") Integer age, @Param("userName") String userName,
+                @Param("profileImage") String profileImage, @Param("phoneNumber") String phoneNumber);
 
     // 모든 회원 정보 조회
     @Select("SELECT * FROM users ORDER BY userid ASC")

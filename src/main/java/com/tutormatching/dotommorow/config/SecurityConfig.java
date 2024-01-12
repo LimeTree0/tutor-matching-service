@@ -23,8 +23,7 @@ public class SecurityConfig {
 
     // 허용할 url 목록
     private final String[] whiteList = {"/", "/user/joinForm", "/css/**", "/images/**", "/js/**",
-            "/h2-console/**", "/error/**", "/WEB-INF/views/**", "/favicon.ico", "/user/join"};
-
+            "/h2-console/**", "/error/**", "/WEB-INF/views/**", "/favicon.ico", "/user/join", "/user/myPage"};
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 

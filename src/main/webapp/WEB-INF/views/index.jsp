@@ -7,5 +7,6 @@
 </head>
 <body>
 테스트입니다
+<a href="http://localhost:8080/user/myPage">마이 페이지</a>
 </body>
 </html>

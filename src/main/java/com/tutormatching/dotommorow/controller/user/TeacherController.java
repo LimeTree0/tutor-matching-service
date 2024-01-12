@@ -1,5 +1,6 @@
 package com.tutormatching.dotommorow.controller.user;
 
+import ch.qos.logback.classic.spi.ConfiguratorRank;
 import com.tutormatching.dotommorow.dto.user.*;
 import com.tutormatching.dotommorow.service.user.StudentService;
 import com.tutormatching.dotommorow.service.user.TeacherService;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
-@RestController
+@Controller
 @RequiredArgsConstructor
 public class TeacherController {
 
@@ -20,17 +21,7 @@ public class TeacherController {
 
     @GetMapping("/teacher")
     public String teacher() {
-//        UserDto userDto = new UserDto("test", 1L, "test", "W", 20, "test", "test", "test", null);
-//        TeacherSaveDto teacherSaveDto = new TeacherSaveDto("test", 1, null, null, "hello", null, "test", null);
-//        userService.save(userDto);
-//        teacherService.save(teacherSaveDto);
-//
-//        teacherService.update("test", new TeacherUpdateDto(1, null, null, "update", null, null, null));
-//        TeacherDto test = teacherService.findById("test");
-//        log.info("test: {}", test.getComment());
-//
-//        TeacherWithUserDto teacher = teacherService.selectByIdWithUser("test");
-//        log.info("test: {} {}", teacher.getComment(), teacher.getUserDto().getUserId());
+
         return "teacher 실행";
     }
 }

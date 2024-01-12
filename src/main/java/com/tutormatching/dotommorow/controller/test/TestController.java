@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.security.Principal;
 import java.util.List;
 
 @Slf4j
@@ -25,7 +26,13 @@ public class TestController {
     }
 
     @GetMapping("/")
-    public String index() {
+    public String index(Principal principal) {
+
+        if (principal == null) {
+            return "index";
+        }
+
+        log.info("login username: {}", principal.getName());
         return "index";
     }
 }

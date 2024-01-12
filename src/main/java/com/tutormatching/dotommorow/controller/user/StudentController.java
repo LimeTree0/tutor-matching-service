@@ -23,21 +23,7 @@ public class StudentController {
 
     @GetMapping("/student")
     public String student() {
-//        log.info("student 실행");
-//        UserDto userDto = new UserDto("userid", 1L, "password", "G", 20, "userName", "profileImage", "phonenumber", LocalDateTime.now());
-//        StudentSaveDto studentSaveDto = new StudentSaveDto("userid", 1, "rage", LocalDateTime.now(), LocalDateTime.now(), "Category", "level", "academic");
-//        userService.save(userDto);
-//        studentService.save(studentSaveDto);
-//
-////        studentService.update("userid", new StudentUpdateDto(1, "update", null, null, null, null, null));
-//        StudentDto test = studentService.findById("userid");
-//
-//        StudentWithUserDto student = studentRepository.selectByIdWithUser("userid");
-//
-//        log.info("student.getRange: {}", student.getRange());
-//        log.info("student.getStudentId: {}", student.getStudentId());
-//        log.info("student.userId: {}", student.getUserDto().getUserId());
-//        log.info("student 종료");
+
         return "student";
     }
 }

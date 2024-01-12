@@ -31,8 +31,8 @@ public class UserRepository {
     }
 
     // ID를 이용한 회원 정보 수정
-    public void update(String userId, UserUpdateDto userUpdateDto) {
-        userMapper.update(userId, userUpdateDto.getRegionId(), userUpdateDto.getGender()
+    public void update(UserUpdateDto userUpdateDto) {
+        userMapper.update(userUpdateDto.getUserId(), userUpdateDto.getGender()
                 , userUpdateDto.getAge(), userUpdateDto.getUserName(), userUpdateDto.getProfileImage(),
                 userUpdateDto.getPhoneNumber());
     }

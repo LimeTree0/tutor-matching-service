@@ -43,6 +43,8 @@ public class TeacherService {
         teacherRepository.delete(userId);
     }
 
+
+    // 선생님 정보와 선생님 가입 정보를 같이 조회
     public TeacherWithUserDto selectByIdWithUser(String userId) {
         return teacherRepository.selectByIdWithUser(userId);
     }
