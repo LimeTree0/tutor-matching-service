@@ -40,9 +40,6 @@
         userName : 사용자 이름 <input type="text" name="userName">
     </div>
     <div>
-        profileImage : 프로필 <input type="text" name="profileImage" value="profile">
-    </div>
-    <div>
         phoneNumber : 전화번호 <input type="text" name="phoneNumber">
     </div>
     <div>

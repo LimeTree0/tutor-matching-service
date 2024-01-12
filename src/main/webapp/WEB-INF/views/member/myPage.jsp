@@ -13,6 +13,8 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
+<h1>마이페이지</h1>
+<div><img src="${filePath}"></div>
 <form>
     <div>userId      : <input type="text" name="userId" value="${userDto.userId}" readonly></div>
     <div>si          : <input type="text" name="si" value="${userDto.region.si}"></div>
@@ -21,7 +23,7 @@
     <div>gender      : <input type="text" name="gender" value="${userDto.gender}"></div>
     <div>age         : <input type="text" name="age" value="${userDto.age}"></div>
     <div>userName    : <input type="text" name="userName" value="${userDto.userName}"></div>
-    <div>profileImage: <input type="text" name="profileImage" value="${userDto.profileImage}"></div>
+    <div>profileImage: <input type="file" name="profileImage"></div>
     <div>phoneNumber : <input type="text" name="phoneNumber" value="${userDto.phoneNumber}"></div>
   <button type="button" onclick="update()">수정</button>
     <button type="button" onclick="deleteUser()">삭제</button>
@@ -36,13 +38,20 @@
             gender: document.querySelector('input[name="gender"]').value,
             age: document.querySelector('input[name="age"]').value,
             userName: document.querySelector('input[name="userName"]').value,
-            profileImage: document.querySelector('input[name="profileImage"]').value,
             phoneNumber: document.querySelector('input[name="phoneNumber"]').value,
         };
 
-        axios.put('http://localhost:8080/user/myPage', JSON.stringify(userUpdateDto), {
+        let profileImage = document.querySelector('input[name="profileImage"]').files[0];
+
+        let updateDto = new FormData();
+        updateDto.append('userUpdateDto', new Blob([JSON.stringify(userUpdateDto)], {
+            type: "application/json"
+        }));
+        updateDto.append('profileImage', profileImage);
+
+        axios.put('http://localhost:8080/user/myPage', updateDto, {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'multipart/form-data'
             }
         })
             .then(function (response) {

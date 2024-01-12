@@ -4,17 +4,15 @@ import com.tutormatching.dotommorow.dto.user.UserDto;
 import com.tutormatching.dotommorow.dto.user.UserJoinDto;
 import com.tutormatching.dotommorow.dto.user.UserUpdateDto;
 import com.tutormatching.dotommorow.service.user.UserService;
-import jakarta.servlet.http.HttpServletRequest;
+import com.tutormatching.dotommorow.util.FileUploadUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
 
@@ -28,6 +26,7 @@ import java.security.Principal;
 public class UserController {
 
     private final UserService userService;
+    private final FileUploadUtil fileUploadUtil;
 
     // 회원 가입 페이지
     @GetMapping("/user/joinForm")
@@ -51,17 +50,27 @@ public class UserController {
         }
 
         log.info("mypage username: {}", principal.getName());
+
+        // 회원 정보 조회
         UserDto userDto = userService.findById(principal.getName());
+        log.info("userDto: {}", userDto);
         model.addAttribute("userDto", userDto);
+
+        String filePath = fileUploadUtil.getFullPath(userDto.getProfileImageName());
+        model.addAttribute("filePath", filePath);
+
         return "member/myPage";
     }
 
     // 회원 정보 수정
-    @PutMapping("/user/myPage")
+    @PutMapping(value = "/user/myPage", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
     @ResponseBody
-    public HttpStatus update(@RequestBody UserUpdateDto userUpdateDto) {
+    public HttpStatus update(@RequestPart("userUpdateDto") UserUpdateDto userUpdateDto,
+                             @RequestPart("profileImage") MultipartFile profileImage) {
+
         log.info("userUpdateDto: {}", userUpdateDto);
-        userService.update(userUpdateDto);
+        log.info("profileImage: {}", profileImage);
+        userService.update(userUpdateDto, profileImage);
         return HttpStatus.OK;
     }
 

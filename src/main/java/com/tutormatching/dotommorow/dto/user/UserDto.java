@@ -3,6 +3,7 @@ package com.tutormatching.dotommorow.dto.user;
 import com.tutormatching.dotommorow.dto.region.RegionDto;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@ToString
 public class UserDto {
     private String userId;
     private Long regionId;
@@ -17,20 +19,20 @@ public class UserDto {
     private String gender;
     private Integer age;
     private String userName;
-    private String profileImage;
+    private String profileImageName;
     private String phoneNumber;
     private LocalDateTime signUpDate;
     private RegionDto region;
 
     public UserDto(String userId, Long regionId, String password, String gender, Integer age,
-                   String userName, String profileImage, String phoneNumber, LocalDateTime signUpDate) {
+                   String userName, String profileImageName, String phoneNumber, LocalDateTime signUpDate) {
         this.userId = userId;
         this.regionId = regionId;
         this.password = password;
         this.gender = gender;
         this.age = age;
         this.userName = userName;
-        this.profileImage = profileImage;
+        this.profileImageName = profileImageName;
         this.phoneNumber = phoneNumber;
         this.signUpDate = signUpDate;
     }

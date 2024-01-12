@@ -26,14 +26,14 @@ public class UserRepository {
     public void save(UserDto userDto) {
 
         userMapper.save(userDto.getUserId(), userDto.getRegionId(), userDto.getPassword(), userDto.getGender()
-                , userDto.getAge(), userDto.getUserName(), userDto.getProfileImage(), userDto.getPhoneNumber()
+                , userDto.getAge(), userDto.getUserName(), userDto.getProfileImageName(), userDto.getPhoneNumber()
                 , userDto.getSignUpDate());
     }
 
     // ID를 이용한 회원 정보 수정
     public void update(UserUpdateDto userUpdateDto) {
         userMapper.update(userUpdateDto.getUserId(), userUpdateDto.getGender()
-                , userUpdateDto.getAge(), userUpdateDto.getUserName(), userUpdateDto.getProfileImage(),
+                , userUpdateDto.getAge(), userUpdateDto.getUserName(), userUpdateDto.getProfileImageName(),
                 userUpdateDto.getPhoneNumber());
     }
 

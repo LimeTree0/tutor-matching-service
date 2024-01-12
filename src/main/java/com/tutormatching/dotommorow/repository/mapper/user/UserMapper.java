@@ -17,18 +17,18 @@ public interface UserMapper {
             "#{param4}, #{param5}, #{param6}, " +
             "#{param7}, #{param8}, #{param9})")
     void save(String userId, Long regionId, String password, String gender
-            , Integer age, String userName, String profileImage, String phoneNumber
+            , Integer age, String userName, String profileImageName, String phoneNumber
             , LocalDateTime signUpDate);
 
     // 회원 정보 수정
     @Update("UPDATE users set gender = #{gender}, " +
             "age = #{age}, " +
             "username = #{userName}, " +
-            "profile_image = #{profileImage}, " +
+            "profile_image = #{profileImageName}, " +
             "phoneNumber = #{phoneNumber} where userid = #{userId}")
     void update(@Param("userId") String userId, @Param("gender") String gender
             ,@Param("age") Integer age, @Param("userName") String userName,
-                @Param("profileImage") String profileImage, @Param("phoneNumber") String phoneNumber);
+                @Param("profileImageName") String profileImageName, @Param("phoneNumber") String phoneNumber);
 
     // 모든 회원 정보 조회
     @Select("SELECT * FROM users ORDER BY userid ASC")
