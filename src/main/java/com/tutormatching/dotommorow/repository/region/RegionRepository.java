@@ -11,8 +11,9 @@ public class RegionRepository {
     private final RegionMapper regionMapper;
 
     // 지역 정보 등록
-    public long save(String si, String gun, String gu) {
-        return regionMapper.save(si, gun, gu);
+    public long save(RegionDto regionDto) {
+        regionMapper.save(regionDto);
+        return regionDto.getRegionId();
     }
 
     // ID로 지역 정보 조회

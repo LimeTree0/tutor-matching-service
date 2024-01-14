@@ -19,7 +19,7 @@
     </parameterMap>
 
 
-    <insert id="save" useGeneratedKeys="true" parameterType="String">
+    <insert id="save" useGeneratedKeys="true" keyProperty="regionId" parameterMap="regionParameterMap">
         INSERT INTO region(region_depth1, region_depth2, region_depth3)
         VALUES (#{si}, #{gun}, #{gu})
     </insert>

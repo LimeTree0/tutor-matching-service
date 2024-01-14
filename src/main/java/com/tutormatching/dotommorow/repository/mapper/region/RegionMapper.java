@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface RegionMapper {
     // 지역 정보 등록
-    public long save(@Param("si") String si, @Param("gun") String gun, @Param("gu") String gu);
+    public long save(RegionDto regionDto);
 
     // ID로 지역 정보 조회
     public RegionDto findById(Long id);

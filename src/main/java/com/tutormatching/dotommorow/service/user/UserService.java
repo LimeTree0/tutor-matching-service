@@ -34,7 +34,14 @@ public class UserService {
     // 회원 정보 등록
     public void save(UserJoinDto userJoinDto) {
         userJoinDto.setPassword(passwordEncoder.encode(userJoinDto.getPassword()));
-        long savedRegionId = regionRepository.save(userJoinDto.getSi(), userJoinDto.getGun(), userJoinDto.getGu());
+
+        // 지역 Dto 생성
+        RegionDto regionDto = new RegionDto();
+        regionDto.setSi(userJoinDto.getSi());
+        regionDto.setGun(userJoinDto.getGun());
+        regionDto.setGu(userJoinDto.getGu());
+
+        long savedRegionId = regionRepository.save(regionDto);
         UserDto userDto = userJoinDto.transferToUserDto(userJoinDto, savedRegionId);
         log.info("[UserService] userDto: {}", userDto);
         userRepository.save(userDto);
