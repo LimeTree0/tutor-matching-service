@@ -15,8 +15,10 @@ import org.springframework.stereotype.Component;
  * SMS 발송 유틸
  */
 @Component
-// application-sms.properties 파일을 읽어옴
-@PropertySource("classpath:application-sms.properties")
+//// 실제 서비스 시 사용
+//@PropertySource("classpath:application-sms.properties")
+// 테스트 시 사용
+@PropertySource({"classpath:application.properties"})
 public class SmsUtil {
 
     @Value("${coolsms.api.key}")

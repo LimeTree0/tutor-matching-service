@@ -10,7 +10,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
-@PropertySource({"classpath:application-s3.properties"})
+//// 실제 서비스 시 사용
+//@PropertySource({"classpath:application-s3.properties"})
+// 테스트 시 사용
+@PropertySource({"classpath:application.properties"})
 public class S3Config {
     @Value("${cloud.aws.credentials.accessKey}")
     private String accessKey;

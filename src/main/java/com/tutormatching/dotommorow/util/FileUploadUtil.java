@@ -14,7 +14,10 @@ import java.util.UUID;
 
 @Slf4j
 @Component
-@PropertySource("classpath:application-s3.properties")
+//// 실제 서비스 시 사용
+//@PropertySource("classpath:application-s3.properties")
+// 테스트 시 사용
+@PropertySource("classpath:application.properties")
 @RequiredArgsConstructor
 public class FileUploadUtil {
 
@@ -67,3 +70,5 @@ public class FileUploadUtil {
         return "https://" + bucket + ".s3.amazonaws.com/" + fileName;
     }
 }
+
+

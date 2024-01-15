@@ -72,7 +72,7 @@ public class UserController {
     @PutMapping(value = "/user/myPage", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
     @ResponseBody
     public HttpStatus update(@RequestPart("userUpdateDto") UserUpdateDto userUpdateDto,
-                             @RequestPart("profileImage") MultipartFile profileImage) {
+                             @RequestPart(value = "profileImage", required = false) MultipartFile profileImage) {
 
         log.info("userUpdateDto: {}", userUpdateDto);
         log.info("profileImage: {}", profileImage);

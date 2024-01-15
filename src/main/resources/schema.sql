@@ -10,7 +10,7 @@ drop table if exists users CASCADE;
 create table users
 (
     userid varchar(50) not null primary key,
-    region_id integer not null,
+    region_id integer not null unique,
     userpw varchar(100) not null,
     gender char(1),
     age integer,
@@ -25,14 +25,15 @@ create table student
 (
     studentid integer not null auto_increment primary key,
     userid varchar(50) not null,
-    region_id integer not null,
+    region_id integer not null unique,
     range varchar(50),
     yail varchar(50),
     time TIME,
     category varchar(50),
     class varchar(50),
     academic varchar(50),
-    foreign key (userid) references users(userid)
+    foreign key (userid) references users(userid),
+    foreign key (region_id) references users(region_id)
 );
 
 drop table if exists teacher CASCADE;
@@ -47,7 +48,8 @@ create table teacher
     category varchar(50),
     class varchar(50),
     academic varchar(50),
-    foreign key (userid) references users(userid)
+    foreign key (userid) references users(userid),
+    foreign key (region_id) references users(region_id)
 );
 
 drop table if exists region CASCADE;
