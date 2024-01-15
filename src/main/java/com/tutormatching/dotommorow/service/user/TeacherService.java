@@ -1,9 +1,9 @@
 package com.tutormatching.dotommorow.service.user;
 
-import com.tutormatching.dotommorow.dto.user.TeacherDto;
-import com.tutormatching.dotommorow.dto.user.TeacherSaveDto;
-import com.tutormatching.dotommorow.dto.user.TeacherUpdateDto;
-import com.tutormatching.dotommorow.dto.user.TeacherWithUserDto;
+import com.tutormatching.dotommorow.dto.user.teacher.TeacherDto;
+import com.tutormatching.dotommorow.dto.user.teacher.TeacherSaveDto;
+import com.tutormatching.dotommorow.dto.user.teacher.TeacherUpdateDto;
+import com.tutormatching.dotommorow.dto.user.teacher.TeacherWithUserDto;
 import com.tutormatching.dotommorow.repository.user.TeacherRepository;
 import com.tutormatching.dotommorow.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,9 +28,9 @@ public class TeacherService {
     }
 
     // 선생님 정보 수정
-    public void update(String userId, TeacherUpdateDto teacherUpdateDto) {
+    public void update(TeacherUpdateDto teacherUpdateDto) {
 
-        teacherRepository.update(userId, teacherUpdateDto);
+        teacherRepository.update(teacherUpdateDto);
     }
 
     // ID를 이용한 선생님 정보 조회

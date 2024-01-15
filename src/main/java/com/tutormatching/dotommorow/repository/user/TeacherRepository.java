@@ -1,9 +1,9 @@
 package com.tutormatching.dotommorow.repository.user;
 
-import com.tutormatching.dotommorow.dto.user.TeacherDto;
-import com.tutormatching.dotommorow.dto.user.TeacherSaveDto;
-import com.tutormatching.dotommorow.dto.user.TeacherUpdateDto;
-import com.tutormatching.dotommorow.dto.user.TeacherWithUserDto;
+import com.tutormatching.dotommorow.dto.user.teacher.TeacherDto;
+import com.tutormatching.dotommorow.dto.user.teacher.TeacherSaveDto;
+import com.tutormatching.dotommorow.dto.user.teacher.TeacherUpdateDto;
+import com.tutormatching.dotommorow.dto.user.teacher.TeacherWithUserDto;
 import com.tutormatching.dotommorow.repository.mapper.user.TeacherMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -26,8 +26,8 @@ public class TeacherRepository {
     }
 
     // ID를 이용한 선생님 정보 수정
-    public void update(String userId, TeacherUpdateDto teacherUpdateDto) {
-        teacherMapper.update(userId, teacherUpdateDto.getRegionId(), teacherUpdateDto.getYail(),
+    public void update(TeacherUpdateDto teacherUpdateDto) {
+        teacherMapper.update(teacherUpdateDto.getUserId(), teacherUpdateDto.getRegionId(), teacherUpdateDto.getYail(),
                 teacherUpdateDto.getTime(), teacherUpdateDto.getComment(), teacherUpdateDto.getCategory(),
                 teacherUpdateDto.getClassLevel(), teacherUpdateDto.getAcademic());
     }

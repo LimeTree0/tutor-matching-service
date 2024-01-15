@@ -1,12 +1,12 @@
 package com.tutormatching.dotommorow.repository.user;
 
-import com.tutormatching.dotommorow.dto.user.*;
+import com.tutormatching.dotommorow.dto.user.student.StudentDto;
+import com.tutormatching.dotommorow.dto.user.student.StudentSaveDto;
+import com.tutormatching.dotommorow.dto.user.student.StudentUpdateDto;
+import com.tutormatching.dotommorow.dto.user.student.StudentWithUserDto;
 import com.tutormatching.dotommorow.repository.mapper.user.StudentMapper;
-import com.tutormatching.dotommorow.repository.mapper.user.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 
 /**

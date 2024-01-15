@@ -4,7 +4,7 @@
 
 <mapper namespace="com.tutormatching.dotommorow.repository.mapper.user.UserMapper">
 
-    <resultMap id="userMap" type="com.tutormatching.dotommorow.dto.user.UserDto">
+    <resultMap id="userMap" type="com.tutormatching.dotommorow.dto.user.user.UserDto">
         <id property="userId" column="userid"/>
         <result property="regionId" column="region_id"/>
         <result property="password" column="userpw"/>
@@ -16,7 +16,7 @@
         <result property="signUpDate" column="signup_date"/>
     </resultMap>
 
-    <select id="findById" resultType="com.tutormatching.dotommorow.dto.user.UserDto">
+    <select id="findById" resultType="com.tutormatching.dotommorow.dto.user.user.UserDto">
         SELECT *
         FROM users u
         where u.userid = #{userId}

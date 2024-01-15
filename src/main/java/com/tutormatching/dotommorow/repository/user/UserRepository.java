@@ -1,9 +1,8 @@
 package com.tutormatching.dotommorow.repository.user;
 
-import com.tutormatching.dotommorow.dto.user.UserDetailsCustomDto;
-import com.tutormatching.dotommorow.dto.user.UserDto;
-import com.tutormatching.dotommorow.dto.user.UserJoinDto;
-import com.tutormatching.dotommorow.dto.user.UserUpdateDto;
+import com.tutormatching.dotommorow.dto.user.user.UserDetailsCustomDto;
+import com.tutormatching.dotommorow.dto.user.user.UserDto;
+import com.tutormatching.dotommorow.dto.user.user.UserUpdateDto;
 import com.tutormatching.dotommorow.repository.mapper.user.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -4,7 +4,7 @@
 
 <mapper namespace="com.tutormatching.dotommorow.repository.mapper.user.TeacherMapper">
 
-    <resultMap id="userMap" type="com.tutormatching.dotommorow.dto.user.UserDto">
+    <resultMap id="userMap" type="com.tutormatching.dotommorow.dto.user.user.UserDto">
         <id property="userId" column="userid"/>
         <result property="regionId" column="region_id"/>
         <result property="password" column="userpw"/>
@@ -16,11 +16,22 @@
         <result property="signUpDate" column="signup_date"/>
     </resultMap>
 
-    <resultMap id="teacherWithUserMap" type="com.tutormatching.dotommorow.dto.user.TeacherWithUserDto">
+    <resultMap id="teacherMap" type="com.tutormatching.dotommorow.dto.user.teacher.TeacherDto">
         <id property="teacherId" column="teacherid"/>
         <result property="userId" column="userid"/>
         <result property="regionId" column="region_id"/>
-        <result property="range" column="range"/>
+        <result property="yail" column="yail"/>
+        <result property="time" column="time"/>
+        <result property="comment" column="comment"/>
+        <result property="category" column="category"/>
+        <result property="classLevel" column="class"/>
+        <result property="academic" column="academic"/>
+    </resultMap>
+
+    <resultMap id="teacherWithUserMap" type="com.tutormatching.dotommorow.dto.user.teacher.TeacherWithUserDto">
+        <id property="teacherId" column="teacherid"/>
+        <result property="userId" column="userid"/>
+        <result property="regionId" column="region_id"/>
         <result property="yail" column="yail"/>
         <result property="time" column="time"/>
         <result property="comment" column="comment"/>
@@ -35,5 +46,11 @@
         FROM users u
                  JOIN teacher s on u.userid = s.userid
         where u.userid = #{userId}
+    </select>
+
+    <select id="findById" resultMap="teacherMap">
+        SELECT *
+        FROM teacher
+        where userid = #{userId}
     </select>
 </mapper>

@@ -1,8 +1,8 @@
 package com.tutormatching.dotommorow.controller.user;
 
-import com.tutormatching.dotommorow.dto.user.UserDto;
-import com.tutormatching.dotommorow.dto.user.UserJoinDto;
-import com.tutormatching.dotommorow.dto.user.UserUpdateDto;
+import com.tutormatching.dotommorow.dto.user.user.UserDto;
+import com.tutormatching.dotommorow.dto.user.user.UserJoinDto;
+import com.tutormatching.dotommorow.dto.user.user.UserUpdateDto;
 import com.tutormatching.dotommorow.service.user.UserService;
 import com.tutormatching.dotommorow.util.FileUploadUtil;
 import com.tutormatching.dotommorow.util.SmsUtil;

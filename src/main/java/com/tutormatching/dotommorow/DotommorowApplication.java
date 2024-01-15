@@ -1,8 +1,6 @@
 package com.tutormatching.dotommorow;
 
-import com.tutormatching.dotommorow.dto.user.UserDto;
-import com.tutormatching.dotommorow.dto.user.UserJoinDto;
-import com.tutormatching.dotommorow.repository.region.RegionRepository;
+import com.tutormatching.dotommorow.dto.user.user.UserJoinDto;
 import com.tutormatching.dotommorow.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.SpringApplication;

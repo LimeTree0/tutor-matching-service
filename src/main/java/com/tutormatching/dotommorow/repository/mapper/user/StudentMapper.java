@@ -1,13 +1,10 @@
 package com.tutormatching.dotommorow.repository.mapper.user;
 
-import com.tutormatching.dotommorow.dto.user.StudentDto;
-import com.tutormatching.dotommorow.dto.user.StudentWithUserDto;
-import com.tutormatching.dotommorow.dto.user.UserDto;
+import com.tutormatching.dotommorow.dto.user.student.StudentDto;
+import com.tutormatching.dotommorow.dto.user.student.StudentWithUserDto;
 import org.apache.ibatis.annotations.*;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.List;
 
 /**
  * Student에 대한 정보를 CRUD할 수 있는 Mapper 클래스

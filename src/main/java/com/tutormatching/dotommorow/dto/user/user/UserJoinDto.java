@@ -1,4 +1,4 @@
-package com.tutormatching.dotommorow.dto.user;
+package com.tutormatching.dotommorow.dto.user.user;
 
 import lombok.Getter;
 import lombok.Setter;

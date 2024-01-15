@@ -1,13 +1,12 @@
 package com.tutormatching.dotommorow.service.user;
 
-import com.tutormatching.dotommorow.dto.user.UserDetailsCustomDto;
+import com.tutormatching.dotommorow.dto.user.user.UserDetailsCustomDto;
 import com.tutormatching.dotommorow.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**

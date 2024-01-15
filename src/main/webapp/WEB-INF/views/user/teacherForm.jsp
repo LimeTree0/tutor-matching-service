@@ -18,13 +18,13 @@
     <input name="regionId" value="${regionId}" readonly hidden="hidden">
 
     <div>
-        범위: <input type="text" name="range" value="${studentDto.range}">
-    </div>
-    <div>
-        요일: <input type="text" name="yail" value="${studentDto.yail}">
+        요일: <input type="text" name="yail" value="${teacherDto.yail}">
     </div>
     <div>
         시간: <input type="time" name="time">
+    </div>
+    <div>
+        한줄 소개: <input type="text" name="comment" value="${teacherDto.comment}">
     </div>
     <div>
         카테고리:
@@ -42,10 +42,10 @@
         </select>
     </div>
     <div>
-        학력: <input type="text" name="academic" value="${studentDto.academic}">
+        학력: <input type="text" name="academic" value="${teacherDto.academic}">
     </div>
     <c:if test="${!isExist}">
-        <input type="submit" value="학생 등록">
+        <input type="submit" value="선생님 등록">
     </c:if>
     <c:if test="${isExist}">
         <input type="button" onclick="studentUpdate()" value="수정">
@@ -60,9 +60,9 @@
         let studentUpdateDto = {
             userId: document.querySelector("input[name='userId']").value,
             regionId: document.querySelector("input[name='regionId']").value,
-            range: document.querySelector("input[name='range']").value,
             yail: document.querySelector("input[name='yail']").value,
             time: document.querySelector("input[name='time']").value,
+            comment: document.querySelector("input[name='comment']").value,
             category: Array.from(document.querySelectorAll("input[name='category']:checked")).map(function (checkbox) {
                 return checkbox.value;
             }) ,
@@ -70,7 +70,7 @@
             academic: document.querySelector("input[name='academic']").value,
         }
 
-        axios.put('http://localhost:8080/user/student',
+        axios.put('http://localhost:8080/user/teacher',
             JSON.stringify(studentUpdateDto), {
                 headers: {
                     'Content-Type': 'application/json'
@@ -87,7 +87,7 @@
     function studentDelete() {
         let userId = document.querySelector("input[name='userId']").value;
 
-        axios.delete('http://localhost:8080/user/student/' + userId)
+        axios.delete('http://localhost:8080/user/teacher/' + userId)
             .then(function (response) {
                 console.log(response);
             })

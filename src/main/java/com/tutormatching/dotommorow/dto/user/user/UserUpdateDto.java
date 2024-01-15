@@ -1,4 +1,4 @@
-package com.tutormatching.dotommorow.dto.user;
+package com.tutormatching.dotommorow.dto.user.user;
 
 import com.tutormatching.dotommorow.dto.region.RegionDto;
 import lombok.AccessLevel;

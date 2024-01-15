@@ -1,9 +1,9 @@
 package com.tutormatching.dotommorow.service.user;
 
 import com.tutormatching.dotommorow.dto.region.RegionDto;
-import com.tutormatching.dotommorow.dto.user.UserDto;
-import com.tutormatching.dotommorow.dto.user.UserJoinDto;
-import com.tutormatching.dotommorow.dto.user.UserUpdateDto;
+import com.tutormatching.dotommorow.dto.user.user.UserDto;
+import com.tutormatching.dotommorow.dto.user.user.UserJoinDto;
+import com.tutormatching.dotommorow.dto.user.user.UserUpdateDto;
 import com.tutormatching.dotommorow.repository.region.RegionRepository;
 import com.tutormatching.dotommorow.repository.user.UserRepository;
 import com.tutormatching.dotommorow.util.FileUploadUtil;

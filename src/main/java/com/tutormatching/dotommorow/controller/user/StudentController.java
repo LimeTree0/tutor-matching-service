@@ -1,8 +1,9 @@
 package com.tutormatching.dotommorow.controller.user;
 
-import com.tutormatching.dotommorow.dto.user.*;
-import com.tutormatching.dotommorow.repository.user.StudentRepository;
-import com.tutormatching.dotommorow.repository.user.UserRepository;
+import com.tutormatching.dotommorow.dto.user.student.StudentDto;
+import com.tutormatching.dotommorow.dto.user.student.StudentSaveDto;
+import com.tutormatching.dotommorow.dto.user.student.StudentUpdateDto;
+import com.tutormatching.dotommorow.dto.user.user.UserDto;
 import com.tutormatching.dotommorow.service.user.StudentService;
 import com.tutormatching.dotommorow.service.user.UserService;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.time.LocalDateTime;
 
 
 /**

@@ -1,11 +1,11 @@
 package com.tutormatching.dotommorow.repository.mapper.user;
 
-import com.tutormatching.dotommorow.dto.user.StudentDto;
-import com.tutormatching.dotommorow.dto.user.TeacherDto;
-import com.tutormatching.dotommorow.dto.user.TeacherWithUserDto;
+import com.tutormatching.dotommorow.dto.user.teacher.TeacherDto;
+import com.tutormatching.dotommorow.dto.user.teacher.TeacherWithUserDto;
 import org.apache.ibatis.annotations.*;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
  * teacher에 대한 정보를 CRUD할 수 있는 Mapper 클래스
@@ -19,8 +19,8 @@ public interface TeacherMapper {
             "#{param7}, #{param8})")
     void save(String userId,
               Integer regionId,
-              LocalDateTime yail,
-              LocalDateTime time,
+              String yail,
+              LocalTime time,
               String comment,
               String category,
               String classLevel,
@@ -37,8 +37,8 @@ public interface TeacherMapper {
             "where userid = #{param1}")
     void update(String userid,
                 Integer regionId,
-                LocalDateTime yail,
-                LocalDateTime time,
+                String yail,
+                LocalTime time,
                 String comment,
                 String category,
                 String classLevel,
@@ -46,7 +46,6 @@ public interface TeacherMapper {
 
 
     // 특정 선생님 정보 조회
-    @Select("SELECT * FROM teacher WHERE userid = #{param1}")
     TeacherDto findById(String userId);
 
     // 선생님 정보 삭제

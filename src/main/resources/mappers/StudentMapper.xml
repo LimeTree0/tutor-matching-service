@@ -4,7 +4,7 @@
 
 <mapper namespace="com.tutormatching.dotommorow.repository.mapper.user.StudentMapper">
 
-    <resultMap id="userMap" type="com.tutormatching.dotommorow.dto.user.UserDto">
+    <resultMap id="userMap" type="com.tutormatching.dotommorow.dto.user.user.UserDto">
         <id property="userId" column="userid"/>
         <result property="regionId" column="region_id"/>
         <result property="password" column="userpw"/>
@@ -16,7 +16,7 @@
         <result property="signUpDate" column="signup_date"/>
     </resultMap>
 
-    <resultMap id="studentMap" type="com.tutormatching.dotommorow.dto.user.StudentDto">
+    <resultMap id="studentMap" type="com.tutormatching.dotommorow.dto.user.student.StudentDto">
         <id property="studentId" column="studentid"/>
         <result property="userId" column="userid"/>
         <result property="regionId" column="region_id"/>
@@ -28,7 +28,7 @@
         <result property="academic" column="academic"/>
     </resultMap>
 
-    <resultMap id="studentWithUserMap" type="com.tutormatching.dotommorow.dto.user.StudentWithUserDto">
+    <resultMap id="studentWithUserMap" type="com.tutormatching.dotommorow.dto.user.student.StudentWithUserDto">
         <id property="studentId" column="studentid"/>
         <result property="regionId" column="region_id"/>
         <result property="range" column="range"/>
