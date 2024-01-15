@@ -27,7 +27,7 @@ create table student
     userid varchar(50) not null,
     region_id integer not null,
     range varchar(50),
-    yail date,
+    yail varchar(50),
     time TIME,
     category varchar(50),
     class varchar(50),

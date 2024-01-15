@@ -1,30 +1,31 @@
 package com.tutormatching.dotommorow.dto.user;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.List;
 
 // 학생 정보를 받아오는 DTO
 @Getter
 @Setter
+@ToString
 public class StudentUpdateDto {
 
+    private String userId;
     private Integer regionId;
     private String range;
-    private LocalDateTime yail;
-    private LocalDateTime time;
+    private String yail;
+    private LocalTime time;
+    @Setter(AccessLevel.NONE)
     private String category;
     private String classLevel;
     private String academic;
 
-    public StudentUpdateDto(Integer regionId, String range, LocalDateTime yail, LocalDateTime time, String category, String classLevel, String academic) {
-        this.regionId = regionId;
-        this.range = range;
-        this.yail = yail;
-        this.time = time;
-        this.category = category;
-        this.classLevel = classLevel;
-        this.academic = academic;
+    public void setCategory(List<String> category) {
+        this.category = String.join(", ", category);
     }
 }

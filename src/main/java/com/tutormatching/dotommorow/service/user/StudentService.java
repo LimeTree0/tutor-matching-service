@@ -27,9 +27,9 @@ public class StudentService {
     }
 
     // 학생 정보 수정
-    public void update(String userId, StudentUpdateDto studentUpdateDto) {
+    public void update(StudentUpdateDto studentUpdateDto) {
 
-        studentRepository.update(userId, studentUpdateDto);
+        studentRepository.update(studentUpdateDto);
     }
 
     // ID를 이용한 학생 정보 조회

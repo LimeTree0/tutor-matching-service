@@ -37,7 +37,7 @@ public class UserController {
     // 회원 가입 페이지
     @GetMapping("/user/joinForm")
     public String user() {
-        return "member/joinForm";
+        return "user/joinForm";
     }
 
     // 회원 가입
@@ -65,7 +65,7 @@ public class UserController {
         String filePath = fileUploadUtil.getFullPath(userDto.getProfileImageName());
         model.addAttribute("filePath", filePath);
 
-        return "member/myPage";
+        return "user/myPage";
     }
 
     // 회원 정보 수정

@@ -26,8 +26,8 @@ public class StudentRepository {
     }
 
     // ID를 이용한 학생 정보 수정
-    public void update(String userId, StudentUpdateDto studentUpdateDto) {
-        studentMapper.update(userId, studentUpdateDto.getRegionId(), studentUpdateDto.getRange()
+    public void update(StudentUpdateDto studentUpdateDto) {
+        studentMapper.update(studentUpdateDto.getUserId(), studentUpdateDto.getRegionId(), studentUpdateDto.getRange()
                 , studentUpdateDto.getYail(), studentUpdateDto.getTime(), studentUpdateDto.getCategory(),
                 studentUpdateDto.getClassLevel(), studentUpdateDto.getAcademic());
     }

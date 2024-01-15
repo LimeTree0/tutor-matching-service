@@ -6,6 +6,7 @@ import com.tutormatching.dotommorow.dto.user.UserDto;
 import org.apache.ibatis.annotations.*;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 /**
@@ -21,8 +22,8 @@ public interface StudentMapper {
     void save(String userId,
               Integer regionId,
               String range,
-              LocalDateTime yail,
-              LocalDateTime time,
+              String yail,
+              LocalTime time,
               String category,
               String classLevel,
               String academic);
@@ -39,16 +40,15 @@ public interface StudentMapper {
     void update(String userid,
                 Integer regionId,
                 String range,
-                LocalDateTime yail,
-                LocalDateTime time,
+                String yail,
+                LocalTime time,
                 String category,
                 String classLevel,
                 String academic);
 
 
     // 특정 학생 정보 조회
-    @Select("SELECT * FROM student WHERE userid = #{param1}")
-    StudentDto findById(String userId);
+    StudentDto findById(@Param("userId") String userId);
 
     // 학생 정보 삭제
     @Delete("DELETE FROM student WHERE userid = #{param1}")

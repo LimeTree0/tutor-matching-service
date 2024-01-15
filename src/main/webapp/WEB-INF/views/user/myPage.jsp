@@ -28,6 +28,9 @@
   <button type="button" onclick="update()">수정</button>
     <button type="button" onclick="deleteUser()">삭제</button>
 </form>
+
+<a href="http://localhost:8080/user/student">학생 페이지</a>
+<a href="http://localhost:8080/user/teacher">선생님 페이지</a>
 <script type="text/javascript">
     function update() {
         let userUpdateDto = {

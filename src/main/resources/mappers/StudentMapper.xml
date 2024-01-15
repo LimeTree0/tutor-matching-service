@@ -16,6 +16,18 @@
         <result property="signUpDate" column="signup_date"/>
     </resultMap>
 
+    <resultMap id="studentMap" type="com.tutormatching.dotommorow.dto.user.StudentDto">
+        <id property="studentId" column="studentid"/>
+        <result property="userId" column="userid"/>
+        <result property="regionId" column="region_id"/>
+        <result property="range" column="range"/>
+        <result property="yail" column="yail"/>
+        <result property="time" column="time"/>
+        <result property="category" column="category"/>
+        <result property="classLevel" column="class"/>
+        <result property="academic" column="academic"/>
+    </resultMap>
+
     <resultMap id="studentWithUserMap" type="com.tutormatching.dotommorow.dto.user.StudentWithUserDto">
         <id property="studentId" column="studentid"/>
         <result property="regionId" column="region_id"/>
@@ -33,5 +45,11 @@
         FROM users u
                  JOIN student s on u.userid = s.userid
         where u.userid = #{userId}
+    </select>
+
+    <select id="findById" resultMap="studentMap">
+        SELECT *
+        FROM student
+        where userid = #{userId}
     </select>
 </mapper>
