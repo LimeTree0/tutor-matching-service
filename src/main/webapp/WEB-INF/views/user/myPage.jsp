@@ -16,23 +16,24 @@
 <h1>마이페이지</h1>
 <div><img src="${filePath}"></div>
 <form>
-    <div>userId      : <input type="text" name="userId" value="${userDto.userId}" readonly></div>
-    <div>si          : <input type="text" name="si" value="${userDto.region.si}"></div>
-    <div>gun         : <input type="text" name="gun" value="${userDto.region.gun}"></div>
-    <div>gu          : <input type="text" name="gu" value="${userDto.region.gu}"></div>
-    <div>gender      : <input type="text" name="gender" value="${userDto.gender}"></div>
-    <div>age         : <input type="text" name="age" value="${userDto.age}"></div>
-    <div>userName    : <input type="text" name="userName" value="${userDto.userName}"></div>
+    <div>userId : <input type="text" name="userId" value="${userDto.userId}" readonly></div>
+    <div>si : <input type="text" name="si" value="${userDto.region.si}"></div>
+    <div>gun : <input type="text" name="gun" value="${userDto.region.gun}"></div>
+    <div>gu : <input type="text" name="gu" value="${userDto.region.gu}"></div>
+    <div>gender : <input type="text" name="gender" value="${userDto.gender}"></div>
+    <div>age : <input type="text" name="age" value="${userDto.age}"></div>
+    <div>userName : <input type="text" name="userName" value="${userDto.userName}"></div>
     <div>profileImage: <input type="file" name="profileImage"></div>
     <div>phoneNumber : <input type="text" name="phoneNumber" value="${userDto.phoneNumber}"></div>
-  <button type="button" onclick="update()">수정</button>
+    <button type="button" onclick="updateUser()">수정</button>
     <button type="button" onclick="deleteUser()">삭제</button>
 </form>
 
 <a href="http://localhost:8080/user/student">학생 페이지</a>
 <a href="http://localhost:8080/user/teacher">선생님 페이지</a>
+
 <script type="text/javascript">
-    function update() {
+    function updateUser() {
         let userUpdateDto = {
             userId: document.querySelector('input[name="userId"]').value,
             si: document.querySelector('input[name="si"]').value,

@@ -1,9 +1,11 @@
 package com.tutormatching.dotommorow.controller.user;
 
+import com.tutormatching.dotommorow.dto.lesson.LessonDto;
 import com.tutormatching.dotommorow.dto.user.teacher.TeacherDto;
 import com.tutormatching.dotommorow.dto.user.teacher.TeacherSaveDto;
 import com.tutormatching.dotommorow.dto.user.teacher.TeacherUpdateDto;
 import com.tutormatching.dotommorow.dto.user.user.UserDto;
+import com.tutormatching.dotommorow.service.lesson.LessonService;
 import com.tutormatching.dotommorow.service.user.TeacherService;
 import com.tutormatching.dotommorow.service.user.UserService;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +16,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
+/**
+ * 선생님 crud와 관련된 클래스
+ */
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -23,7 +29,9 @@ public class TeacherController {
 
     private final TeacherService teacherService;
     private final UserService userService;
+    private final LessonService lessonService;
 
+    // 선생님 정보 등록폼
     @GetMapping("/teacher")
     public String teacherForm(Principal principal, Model model) {
         String userId = principal.getName();
@@ -41,17 +49,22 @@ public class TeacherController {
             model.addAttribute("teacherDto", new TeacherDto());
         }
 
+
+        List<LessonDto> lessonDtoList = lessonService.findAllByTeacherId(teacherDto.getTeacherId());
+        log.info("lessonDtoList: {}", lessonDtoList.size());
+
         model.addAttribute("isExist", isExist);
         model.addAttribute("userId", userId);
         model.addAttribute("regionId", regionId);
+        model.addAttribute("lessonDtoList", lessonDtoList);
         return "user/teacherForm";
     }
 
     // 학생 정보 등록
     @PostMapping("/teacher")
-    public String teacherJoin(@ModelAttribute TeacherSaveDto teacherDto) {
-        log.info("teacherJoinDto: {}", teacherDto);
-        teacherService.save(teacherDto);
+    public String teacherJoin(@ModelAttribute TeacherSaveDto teacherSaveDto) {
+        log.info("teacherSaveDto: {}", teacherSaveDto);
+        teacherService.save(teacherSaveDto);
         return "redirect:/";
     }
 

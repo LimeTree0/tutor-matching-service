@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tutormatching.dotommorow.repository.mapper.lesson.LessonMapper">
+
+    <resultMap id="lessonDtoResultMap" type="com.tutormatching.dotommorow.dto.lesson.LessonDto">
+        <id property="classId" column="classid"/>
+        <result property="teacherId" column="teacherid"/>
+        <result property="teacherName" column="userid"/>
+        <result property="category" column="category"/>
+        <result property="location" column="location"/>
+        <result property="description" column="descriptions"/>
+        <result property="ftf" column="ftf"/>
+        <result property="peopleNumber" column="people_number"/>
+    </resultMap>
+
+    <parameterMap id="lessonDtoParameterMap" type="com.tutormatching.dotommorow.dto.lesson.LessonSaveDto">
+        <parameter property="classId"/>
+        <parameter property="teacherId"/>
+        <parameter property="category"/>
+        <parameter property="location"/>
+        <parameter property="description"/>
+        <parameter property="ftf"/>
+        <parameter property="peopleNumber"/>
+    </parameterMap>
+
+    <parameterMap id="lessonUpdateDtoParameterMap" type="com.tutormatching.dotommorow.dto.lesson.LessonUpdateDto">
+        <parameter property="classId"/>
+        <parameter property="description"/>
+        <parameter property="ftf"/>
+        <parameter property="peopleNumber"/>
+    </parameterMap>
+
+    <parameterMap id="lessonConditionDtoParameterMap" type="com.tutormatching.dotommorow.dto.lesson.LessonConditionDto">
+        <parameter property="category"/>
+        <parameter property="location"/>
+        <parameter property="ftf"/>
+    </parameterMap>
+
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="classId" parameterMap="lessonDtoParameterMap">
+        INSERT INTO lesson(teacherid, category, location, descriptions, ftf, people_number)
+        VALUES (#{teacherId}, #{category}, #{location}, #{description}, #{ftf}, #{peopleNumber})
+    </insert>
+
+    <select id="findById" resultMap="lessonDtoResultMap">
+        SELECT *
+        FROM lesson l,
+             teacher t,
+             users u
+        WHERE l.teacherid = t.teacherid
+          AND t.userid = u.userid
+          AND classid = #{classId}
+    </select>
+
+    <select id="findAllByTeacherId" resultMap="lessonDtoResultMap">
+        SELECT *
+        FROM lesson l,
+             teacher t,
+             users u
+        WHERE l.teacherid = t.teacherid
+          AND t.userid = u.userid
+          AND l.teacherid = #{teacherid}
+    </select>
+
+    <select id="findAllByCondition" resultMap="lessonDtoResultMap">
+        SELECT *
+        FROM lesson l, teacher t, users u
+        <where>
+            l.teacherid = t.teacherid
+            AND t.userid = u.userid
+            <if test="category != null">
+                AND l.category LIKE CONCAT('%', #{category}, '%')
+            </if>
+            <if test="location != null">
+                AND l.location LIKE CONCAT('%', #{location}, '%')
+            </if>
+            <if test="ftf != null">
+                AND l.ftf = #{ftf}
+            </if>
+        </where>
+    </select>
+
+    <update id="update" parameterMap="lessonUpdateDtoParameterMap">
+        UPDATE lesson
+        SET descriptions  = #{description},
+            ftf           = #{ftf},
+            people_number = #{peopleNumber}
+        WHERE classid = #{classId}
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+        DELETE
+        FROM lesson
+        WHERE classid = #{classId}
+    </delete>
+</mapper>

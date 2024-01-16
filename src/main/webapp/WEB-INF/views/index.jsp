@@ -9,5 +9,6 @@
 테스트입니다
 <a href="http://localhost:8080/user/joinForm">회원가입</a>
 <a href="http://localhost:8080/user/myPage">마이 페이지</a>
+<a href="http://localhost:8080/lesson/lessonList">게시판</a>
 </body>
 </html>

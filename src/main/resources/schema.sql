@@ -60,3 +60,56 @@ create table region
     region_depth2 varchar(50) not null,
     region_depth3 varchar(50) not null
 );
+
+drop table if exists lesson CASCADE;
+create table lesson
+(
+    classid integer not null auto_increment primary key,
+    teacherid integer not null,
+    category varchar(50) not null,
+    location varchar(50),
+    descriptions varchar(500),
+    ftf varchar(1),
+    people_number integer,
+    foreign key (teacherid) references teacher(teacherid)
+);
+
+drop table if exists lesson_buy CASCADE;
+create table lesson_buy
+(
+    orderid integer not null auto_increment primary key,
+    studentid integer not null,
+    classid integer not null,
+    teacherid integer not null,
+    first_date DATE,
+    progress varchar(50),
+    lesson_date varchar(50),
+
+    foreign key (studentid) references student(studentid),
+    foreign key (classid) references lesson(classid),
+    foreign key (teacherid) references teacher(teacherid)
+);
+
+drop table if exists wishlist CASCADE;
+create table wishlist
+(
+    wishlistid integer not null auto_increment primary key,
+    studentid integer not null,
+    classid integer not null,
+    foreign key (studentid) references student(studentid),
+    foreign key (classid) references lesson(classid)
+);
+
+drop table if exists review CASCADE;
+create table review
+(
+    reviewid integer not null auto_increment primary key,
+    studentid varchar(50) not null,
+    teacherid integer not null unique ,
+    review varchar(500),
+    grade integer,
+    review_date DATE,
+
+    foreign key (studentid) references student(studentid),
+    foreign key (teacherid) references teacher(teacherid)
+);

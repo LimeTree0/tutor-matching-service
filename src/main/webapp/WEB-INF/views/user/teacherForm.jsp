@@ -49,11 +49,35 @@
     </c:if>
     <c:if test="${isExist}">
         <input type="button" onclick="studentUpdate()" value="수정">
-    </c:if>
-    <c:if test="${isExist}">
         <input type="button" onclick="studentDelete()" value="삭제">
     </c:if>
 </form>
+
+<h1>나의 강의 목록</h1>
+<button><a href="/lesson/lessonForm">강의 등록</a></button>
+<c:if test="${empty lessonDtoList}">
+    <div>강의가 없습니다.</div>
+</c:if>
+<c:if test="${not empty lessonDtoList}">
+    <table>
+        <tr>
+            <td>강의명</td>
+            <td>강의 카테고리</td>
+            <td>강의 총원</td>
+            <td>대면 여부</td>
+            <td>수정</td>
+            <td>삭제</td>
+        </tr>
+        <c:forEach var="lesson" items="${lessonDtoList}">
+            <tr>
+                <td><a href="/lesson/detail/${lesson.classId}">${lesson.teacherName}</a></td>
+                <td>${lesson.category}</td>
+                <td>${lesson.peopleNumber}</td>
+                <td>${lesson.ftf}</td>
+            </tr>
+        </c:forEach>
+    </table>
+</c:if>
 </body>
 <script type="text/javascript">
     function studentUpdate() {
@@ -65,7 +89,7 @@
             comment: document.querySelector("input[name='comment']").value,
             category: Array.from(document.querySelectorAll("input[name='category']:checked")).map(function (checkbox) {
                 return checkbox.value;
-            }) ,
+            }),
             classLevel: document.querySelector("select[name='classLevel']").value,
             academic: document.querySelector("input[name='academic']").value,
         }
