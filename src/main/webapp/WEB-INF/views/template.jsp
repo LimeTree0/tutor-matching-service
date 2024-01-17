@@ -1,3 +1,4 @@
+
 <%--템플릿입니다--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
@@ -74,19 +75,6 @@
 </div>
 
 <div class="content">
-    <div class="container mt-4">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">강의명: ${lessonDto.teacherName}</h5>
-                <p class="card-text"><strong>카테고리:</strong> ${lessonDto.category}</p>
-                <p class="card-text"><strong>지역:</strong> ${lessonDto.location}</p>
-                <p class="card-text"><strong>총원:</strong> ${lessonDto.peopleNumber}</p>
-                <p class="card-text"><strong>대면 여부:</strong> ${lessonDto.ftf}</p>
-                <p class="card-text"><strong>강의 설명:</strong> ${lessonDto.description}</p>
-                <button class="btn btn-primary" value="문의하기">문의하기</button>
-            </div>
-        </div>
-    </div>
 
 </div>
 

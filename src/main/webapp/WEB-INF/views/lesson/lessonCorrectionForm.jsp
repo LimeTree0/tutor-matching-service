@@ -1,4 +1,3 @@
-<%--템플릿입니다--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -74,19 +73,38 @@
 </div>
 
 <div class="content">
-    <div class="container mt-4">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">강의명: ${lessonDto.teacherName}</h5>
-                <p class="card-text"><strong>카테고리:</strong> ${lessonDto.category}</p>
-                <p class="card-text"><strong>지역:</strong> ${lessonDto.location}</p>
-                <p class="card-text"><strong>총원:</strong> ${lessonDto.peopleNumber}</p>
-                <p class="card-text"><strong>대면 여부:</strong> ${lessonDto.ftf}</p>
-                <p class="card-text"><strong>강의 설명:</strong> ${lessonDto.description}</p>
-                <button class="btn btn-primary" value="문의하기">문의하기</button>
+    <form action="/lesson" method="post" class="mb-3">
+        <input name="classId" value="${lessonDto.classId}" readonly hidden>
+
+        <div class="form-group">
+            <label for="description">강의 설명:</label>
+            <textarea name="description" class="form-control" id="description">
+                ${lessonDto.description}
+            </textarea>
+        </div>
+
+        <div class="form-group">
+            <label>대면/비대면 여부:</label>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" name="ftf" value="Y" id="ftfYes"
+                       <c:if test="${lessonDto.ftf == 'Y'}">checked="checked"</c:if>>
+                <label class="form-check-label" for="ftfYes">대면</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" name="ftf" value="N" id="ftfNo"
+                       <c:if test="${lessonDto.ftf == 'N'}">checked="checked"</c:if>>
+                <label class="form-check-label" for="ftfNo">비대면</label>
             </div>
         </div>
-    </div>
+
+        <div class="form-group">
+            <label for="peopleNumber">정원:</label>
+            <input type="number" class="form-control" name="peopleNumber" id="peopleNumber" value="${lessonDto.peopleNumber}">
+        </div>
+
+        <button type="button" class="btn btn-primary" onclick="updateLesson()">수정</button>
+        <button type="button" class="btn btn-danger" onclick="deleteLesson()">삭제</button>
+    </form>
 
 </div>
 
@@ -97,5 +115,43 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    function updateLesson() {
+        let studentUpdateDto = {
+            classId: document.querySelector("input[name='classId']").value,
+            description: document.querySelector("textarea[name='description']").value,
+            ftf: document.querySelector("input[name='ftf']:checked").value,
+            peopleNumber: document.querySelector("input[name='peopleNumber']").value
+        }
+
+        axios.put('http://localhost:8080/lesson/detail/correction',
+            JSON.stringify(studentUpdateDto), {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(function (response) {
+                console.log(response);
+                alert("수정되었습니다");
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    function deleteLesson() {
+        let classId = document.querySelector("input[name='classId']").value;
+
+        axios.delete('http://localhost:8080/lesson/detail/correction/' + classId)
+            .then(function (response) {
+                console.log(response);
+                alert("삭제되었습니다");
+                window.location.href = "http://localhost:8080";
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+</script>
 </body>
 </html>

@@ -8,6 +8,7 @@
         <id property="classId" column="classid"/>
         <result property="teacherId" column="teacherid"/>
         <result property="teacherName" column="userid"/>
+        <result property="userProfileImageName" column="profile_image"/>
         <result property="category" column="category"/>
         <result property="location" column="location"/>
         <result property="description" column="descriptions"/>

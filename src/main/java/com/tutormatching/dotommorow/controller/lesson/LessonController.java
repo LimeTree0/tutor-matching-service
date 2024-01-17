@@ -51,6 +51,14 @@ public class LessonController {
         return "redirect:/";
     }
 
+    // 강의 수정 페이지 폼
+    @GetMapping("/lesson/detail/correction/{classId}")
+    public String lessonCorrection(@PathVariable("classId") Integer classId, Model model) {
+        LessonDto lessonDto = lessonService.findById(classId);
+        model.addAttribute("lessonDto", lessonDto);
+        return "lesson/lessonCorrectionForm";
+    }
+
     // 강의 상세 페이지 폼
     @GetMapping("/lesson/detail/{classId}")
     public String lessonDetail(@PathVariable("classId") Integer classId, Model model) {
@@ -60,7 +68,7 @@ public class LessonController {
     }
 
     // 강의 수정
-    @PutMapping("/lesson/detail")
+    @PutMapping("/lesson/detail/correction")
     @ResponseBody
     public HttpStatus lessonUpdate(@RequestBody LessonUpdateDto lessonUpdateDto) {
         lessonService.update(lessonUpdateDto);
@@ -68,7 +76,7 @@ public class LessonController {
     }
 
     // 강의 삭제
-    @DeleteMapping("/lesson/detail/{classId}")
+    @DeleteMapping("/lesson/detail/correction/{classId}")
     @ResponseBody
     public HttpStatus lessonDelete(@PathVariable("classId") Integer classId) {
         lessonService.delete(classId);
@@ -84,7 +92,7 @@ public class LessonController {
         List<LessonDto> lessonDtoList = lessonService.findAllByCondition(lessonConditionDto);
         log.info("lessonConditionDto lessonDtoList: {}", lessonDtoList.size());
         model.addAttribute("lessonDtoList", lessonDtoList);
-        return "lesson/lessonList";
+        return "index";
     }
 
 

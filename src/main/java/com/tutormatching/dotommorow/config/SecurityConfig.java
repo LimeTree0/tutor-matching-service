@@ -22,7 +22,7 @@ public class SecurityConfig {
     private final UserDetailService userDetailService;
 
     // 허용할 url 목록
-    private final String[] whiteList = {"/", "/user/joinForm", "/css/**", "/images/**", "/js/**",
+    private final String[] whiteList = {"/", "/user/joinForm", "/static/css/**", "/static/images/**", "/static/js/**",
             "/h2-console/**", "/error/**", "/WEB-INF/views/**", "/favicon.ico", "/user/join",
             "/user/myPage", "/user/sms/verificationCode", "/user/sms/certificate"
     };

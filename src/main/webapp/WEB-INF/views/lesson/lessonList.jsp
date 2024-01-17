@@ -36,7 +36,7 @@
     </tr>
     <c:forEach var="lesson" items="${lessonDtoList}">
         <tr>
-            <td>${lesson.teacherName}</td>
+            <td><a href="http://localhost:8080/lesson/detail/${lesson.classId}">${lesson.teacherName}</a></td>
             <td>${lesson.category}</td>
             <td>${lesson.location}</td>
             <td>${lesson.peopleNumber}</td>

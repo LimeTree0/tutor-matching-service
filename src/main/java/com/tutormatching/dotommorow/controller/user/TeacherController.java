@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,20 +41,16 @@ public class TeacherController {
 
         TeacherDto teacherDto = teacherService.findById(userId);
 
-        boolean isExist = false;
+        log.info("teacherDto: {}", teacherDto);
+
+
+        List<LessonDto> lessonDtoList = new ArrayList<>();
+
         if (teacherDto != null) {
-            isExist = true;
-            model.addAttribute("teacherDto", teacherDto);
-            log.info("teacherDto: {}", teacherDto);
-        } else {
-            model.addAttribute("teacherDto", new TeacherDto());
+            lessonDtoList = lessonService.findAllByTeacherId(teacherDto.getTeacherId());
         }
 
-
-        List<LessonDto> lessonDtoList = lessonService.findAllByTeacherId(teacherDto.getTeacherId());
-        log.info("lessonDtoList: {}", lessonDtoList.size());
-
-        model.addAttribute("isExist", isExist);
+        model.addAttribute("teacherDto", teacherDto);
         model.addAttribute("userId", userId);
         model.addAttribute("regionId", regionId);
         model.addAttribute("lessonDtoList", lessonDtoList);

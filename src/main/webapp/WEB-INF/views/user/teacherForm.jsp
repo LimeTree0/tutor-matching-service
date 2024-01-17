@@ -1,84 +1,172 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: bum95
-  Date: 2024-01-15
-  Time: 오전 9:44
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+
+        .navbar-custom {
+            background-color: #395ED3;
+        }
+
+        .header {
+            background-color: #80D1E4;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .footer {
+            background-color: #395ED3;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-<form method="post">
-    <input name="userId" value="${userId}" readonly hidden="hidden">
-    <input name="regionId" value="${regionId}" readonly hidden="hidden">
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <a class="navbar-brand" href="/"><img src="/static/images/icon.png" width="40">홈페이지 로고</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
 
-    <div>
-        요일: <input type="text" name="yail" value="${teacherDto.yail}">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="http://localhost:8080/user/joinForm">회원가입</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8080/login">로그인</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8080/user/myPage">마이 페이지</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8080/lesson/lessonList">강의 리스트</a>
+            </li>
+        </ul>
     </div>
-    <div>
-        시간: <input type="time" name="time">
-    </div>
-    <div>
-        한줄 소개: <input type="text" name="comment" value="${teacherDto.comment}">
-    </div>
-    <div>
-        카테고리:
-        수학: <input type="checkbox" name="category" value="수학">
-        과학: <input type="checkbox" name="category" value="과학">
-        컴퓨터 공학: <input type="checkbox" name="category" value="컴퓨터">
-    </div>
-    <div>
-        수준:
-        <select name="classLevel">
-            <option value="초등" selected>초등</option>
-            <option value="중등">중등</option>
-            <option value="고등">고등</option>
-            <option value="대학">대학</option>
-        </select>
-    </div>
-    <div>
-        학력: <input type="text" name="academic" value="${teacherDto.academic}">
-    </div>
-    <c:if test="${!isExist}">
-        <input type="submit" value="선생님 등록">
-    </c:if>
-    <c:if test="${isExist}">
-        <input type="button" onclick="studentUpdate()" value="수정">
-        <input type="button" onclick="studentDelete()" value="삭제">
-    </c:if>
-</form>
+</nav>
 
-<h1>나의 강의 목록</h1>
-<button><a href="/lesson/lessonForm">강의 등록</a></button>
-<c:if test="${empty lessonDtoList}">
-    <div>강의가 없습니다.</div>
-</c:if>
-<c:if test="${not empty lessonDtoList}">
-    <table>
-        <tr>
-            <td>강의명</td>
-            <td>강의 카테고리</td>
-            <td>강의 총원</td>
-            <td>대면 여부</td>
-            <td>수정</td>
-            <td>삭제</td>
-        </tr>
-        <c:forEach var="lesson" items="${lessonDtoList}">
+<div class="header">
+    <h1>환영합니다!</h1>
+    <p>이곳에서 당신의 최고의 선생님을 찾아보세요!</p>
+</div>
+
+<div class="content">
+    <body>
+    <form method="post" class="mb-4">
+        <input name="userId" value="${userId}" readonly hidden>
+        <input name="regionId" value="${regionId}" readonly hidden>
+
+        <div class="form-group">
+            <label>요일:</label>
+            <input type="text" class="form-control" name="yail" value="${teacherDto.yail}">
+        </div>
+        <div class="form-group">
+            <label>시간:</label>
+            <input type="time" class="form-control" name="time">
+        </div>
+        <div class="form-group">
+            <label>한줄 소개:</label>
+            <input type="text" class="form-control" name="comment" value="${teacherDto.comment}">
+        </div>
+        <div class="form-group">
+            <label>카테고리:</label>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="category" value="수학" id="math">
+                <label class="form-check-label" for="math">수학</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="category" value="과학" id="science">
+                <label class="form-check-label" for="science">과학</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="category" value="컴퓨터" id="computer">
+                <label class="form-check-label" for="computer">컴퓨터 공학</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>수준:</label>
+            <select name="classLevel" class="form-control">
+                <option value="초등" selected>초등</option>
+                <option value="중등">중등</option>
+                <option value="고등">고등</option>
+                <option value="대학">대학</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>학력:</label>
+            <input type="text" class="form-control" name="academic" value="${teacherDto.academic}">
+        </div>
+        <c:if test="${teacherDto == null}">
+            <input type="submit" class="btn btn-primary" value="선생님 등록">
+        </c:if>
+        <c:if test="${teacherDto != null}">
+            <button type="button" class="btn btn-secondary" onclick="studentUpdate()">수정</button>
+            <button type="button" class="btn btn-danger" onclick="studentDelete()">삭제</button>
+        </c:if>
+    </form>
+
+    <h1 class="mb-4">나의 강의 목록</h1>
+    <a href="/lesson/lessonForm" class="btn btn-primary mb-4">강의 등록</a>
+    <c:if test="${empty lessonDtoList}">
+        <div class="alert alert-info">강의가 없습니다.</div>
+    </c:if>
+    <c:if test="${not empty lessonDtoList}">
+        <table class="table">
+            <thead>
             <tr>
-                <td><a href="/lesson/detail/${lesson.classId}">${lesson.teacherName}</a></td>
-                <td>${lesson.category}</td>
-                <td>${lesson.peopleNumber}</td>
-                <td>${lesson.ftf}</td>
+                <th>강의명</th>
+                <th>강의 카테고리</th>
+                <th>강의 총원</th>
+                <th>대면 여부</th>
+                <th>수정</th>
+                <th>삭제</th>
             </tr>
-        </c:forEach>
-    </table>
-</c:if>
-</body>
+            </thead>
+            <tbody>
+            <c:forEach var="lesson" items="${lessonDtoList}">
+                <tr>
+                    <td><a href="/lesson/detail/correction/${lesson.classId}">${lesson.teacherName}</a></td>
+                    <td>${lesson.category}</td>
+                    <td>${lesson.peopleNumber}</td>
+                    <td>${lesson.ftf}</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </c:if>
+    </body>
+
+</div>
+
+<div class="footer">
+    <p>저작권 © 2024 홈페이지 이름. 모든 권리 보유.</p>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     function studentUpdate() {
         let studentUpdateDto = {
@@ -102,6 +190,7 @@
             })
             .then(function (response) {
                 console.log(response);
+                alert('수정되었습니다.');
             })
             .catch(function (error) {
                 console.log(error);
@@ -114,10 +203,13 @@
         axios.delete('http://localhost:8080/user/teacher/' + userId)
             .then(function (response) {
                 console.log(response);
+                alert('삭제되었습니다.');
+                location.href = '/';
             })
             .catch(function (error) {
                 console.log(error);
             });
     }
 </script>
+</body>
 </html>
