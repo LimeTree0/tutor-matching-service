@@ -12,7 +12,9 @@
         <result property="category" column="category"/>
         <result property="location" column="location"/>
         <result property="description" column="descriptions"/>
+        <result property="price" column="price"/>
         <result property="ftf" column="ftf"/>
+        <result property="lessonName" column="lesson_name"/>
         <result property="peopleNumber" column="people_number"/>
     </resultMap>
 
@@ -22,14 +24,17 @@
         <parameter property="category"/>
         <parameter property="location"/>
         <parameter property="description"/>
+        <parameter property="price"/>
         <parameter property="ftf"/>
         <parameter property="peopleNumber"/>
+        <parameter property="lessonName"/>
     </parameterMap>
 
     <parameterMap id="lessonUpdateDtoParameterMap" type="com.tutormatching.dotommorow.dto.lesson.LessonUpdateDto">
         <parameter property="classId"/>
         <parameter property="description"/>
         <parameter property="ftf"/>
+        <parameter property="price"/>
         <parameter property="peopleNumber"/>
     </parameterMap>
 
@@ -41,8 +46,8 @@
 
 
     <insert id="save" useGeneratedKeys="true" keyProperty="classId" parameterMap="lessonDtoParameterMap">
-        INSERT INTO lesson(teacherid, category, location, descriptions, ftf, people_number)
-        VALUES (#{teacherId}, #{category}, #{location}, #{description}, #{ftf}, #{peopleNumber})
+        INSERT INTO lesson(teacherid, category, location, descriptions, ftf, people_number,price, lesson_name)
+        VALUES (#{teacherId}, #{category}, #{location}, #{description}, #{ftf}, #{peopleNumber}, #{price}, #{lessonName})
     </insert>
 
     <select id="findById" resultMap="lessonDtoResultMap">
@@ -88,6 +93,7 @@
         SET descriptions  = #{description},
             ftf           = #{ftf},
             people_number = #{peopleNumber}
+            price = #{price}
         WHERE classid = #{classId}
     </update>
 

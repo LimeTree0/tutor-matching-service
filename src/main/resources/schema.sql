@@ -66,11 +66,13 @@ create table lesson
 (
     classid integer not null auto_increment primary key,
     teacherid integer not null,
+    lesson_name varchar(50) not null,
     category varchar(50) not null,
     location varchar(50),
     descriptions varchar(500),
     ftf varchar(1),
     people_number integer,
+    price integer,
     foreign key (teacherid) references teacher(teacherid)
 );
 

@@ -11,5 +11,6 @@ public class LessonUpdateDto {
     private Integer classId;
     private String description;
     private String ftf;
+    private Integer price;
     private Integer peopleNumber;
 }

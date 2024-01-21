@@ -43,7 +43,7 @@
 <body>
 <%--네비게이션 영역--%>
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-    <a class="navbar-brand" href="/"><img src="/static/images/icon.png" width="40">홈페이지 로고</a>
+    <a class="navbar-brand" href="/"><img src="/static/images/icon.png" width="40">내일 과외</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -112,9 +112,10 @@
                 <div class="col">
                     <div class="card h-60">
                         <a href="http://localhost:8080/lesson/detail/${lessonDto.classId}">
-                            <img src="https://picsum.photos/50/50" class="card-img-top circle-image" alt="..." width="50"></a>
+                            <img src="${lessonDto.filePath}" class="card-img-top circle-image" alt="..." width="50"></a>
                         <div class="card-body">
                             <h5 class="card-title">${lessonDto.teacherName}</h5>
+                            <p class="card-text">${lessonDto.lessonName}</p>
                             <p class="card-text">${lessonDto.category}</p>
                             <p class="card-text">${lessonDto.location}</p>
                         </div>

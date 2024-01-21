@@ -100,7 +100,7 @@ public class UserController {
         String certificationCode = String.valueOf(random.nextInt(9000) + 1000);
         verificationCodeMap.put(phoneNumber, certificationCode);
         log.info("certificationCode: {}", certificationCode);
-        // 문자 전송
+//        // 문자 전송
 //        smsUtil.sendOne(phoneNumber, String.valueOf(certificationCode));
         return HttpStatus.OK;
     }

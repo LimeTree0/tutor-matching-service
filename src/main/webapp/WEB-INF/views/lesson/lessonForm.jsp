@@ -43,7 +43,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-    <a class="navbar-brand" href="/"><img src="/static/images/icon.png" width="40">홈페이지 로고</a>
+    <a class="navbar-brand" href="/"><img src="/static/images/icon.png" width="40">내일 과외</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -91,10 +91,17 @@
                 <label class="form-check-label" for="computer">컴퓨터 공학</label>
             </div>
         </div>
-
+        <div class="form-group">
+            <label for="lessonName">강의명:</label>
+            <input type="text" class="form-control" name="lessonName" id="lessonName">
+        </div>
         <div class="form-group">
             <label for="location">지역:</label>
             <input type="text" class="form-control" name="location" id="location">
+        </div>
+        <div class="form-group">
+            <label for="price">강의 가격:</label>
+            <input type="number" name="price" class="form-control" id="price">
         </div>
         <div class="form-group">
             <label for="description">강의 설명:</label>

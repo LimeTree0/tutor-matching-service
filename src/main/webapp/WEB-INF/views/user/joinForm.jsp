@@ -43,7 +43,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-    <a class="navbar-brand" href="/"><img src="/static/images/icon.png" width="40">홈페이지 로고</a>
+    <a class="navbar-brand" href="/"><img src="/static/images/icon.png" width="40">내일 과외</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

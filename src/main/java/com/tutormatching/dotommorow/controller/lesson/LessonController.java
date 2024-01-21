@@ -7,6 +7,7 @@ import com.tutormatching.dotommorow.dto.lesson.LessonUpdateDto;
 import com.tutormatching.dotommorow.dto.user.teacher.TeacherDto;
 import com.tutormatching.dotommorow.service.lesson.LessonService;
 import com.tutormatching.dotommorow.service.user.TeacherService;
+import com.tutormatching.dotommorow.util.FileUploadUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,7 @@ public class LessonController {
 
     private final LessonService lessonService;
     private final TeacherService teacherService;
+    private final FileUploadUtil fileUploadUtil;
 
     // 강의 등록 페이지 폼
     @GetMapping("/lesson/lessonForm")
@@ -90,6 +92,10 @@ public class LessonController {
         log.info("lessonConditionDto: {}", lessonConditionDto);
 
         List<LessonDto> lessonDtoList = lessonService.findAllByCondition(lessonConditionDto);
+        lessonDtoList.forEach(lessonDto -> {
+            String fullPath = fileUploadUtil.getFullPath(lessonDto.getUserProfileImageName());
+            lessonDto.setFilePath(fullPath);
+        });
         log.info("lessonConditionDto lessonDtoList: {}", lessonDtoList.size());
         model.addAttribute("lessonDtoList", lessonDtoList);
         return "index";

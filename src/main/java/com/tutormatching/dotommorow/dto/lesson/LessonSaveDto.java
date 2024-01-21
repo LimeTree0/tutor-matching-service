@@ -10,9 +10,11 @@ import lombok.ToString;
 public class LessonSaveDto {
     private Integer classId;
     private Integer teacherId;
+    private String lessonName;
     private String category;
     private String location;
     private String description;
     private String ftf;
+    private Integer price;
     private Integer peopleNumber;
 }

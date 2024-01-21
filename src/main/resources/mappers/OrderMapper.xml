@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tutormatching.dotommorow.repository.mapper.order.OrderMapper">
+
+    <resultMap id="orderDtoResultMap" type="com.tutormatching.dotommorow.dto.order.OrderDto">
+        <id property="orderId" column="orderid"/>
+        <result property="classId" column="studentid"/>
+        <result property="studentId" column="classid"/>
+        <result property="teacherId" column="teacherid"/>
+        <result property="firstDate" column="first_date"/>
+        <result property="progress" column="progress"/>
+        <result property="lessonDate" column="lesson_date"/>
+        <result property="lessonName" column="lesson_name"/>
+    </resultMap>
+
+    <parameterMap id="orderSaveDtoParameterMap" type="com.tutormatching.dotommorow.dto.order.OrderSaveDto">
+        <parameter property="studentId"/>
+        <parameter property="classId"/>
+        <parameter property="teacherId"/>
+        <parameter property="firstDate"/>
+        <parameter property="progress"/>
+        <parameter property="lessonDate"/>
+        <parameter property="lessonName"/>
+        <parameter property="price"/>
+    </parameterMap>
+
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="classId" parameterMap="orderSaveDtoParameterMap">
+        INSERT INTO lesson_buy(studentid, classid, teacherid, first_date, progress, lesson_date)
+        VALUES (#{studentId}, #{classId}, #{teacherId}, #{firstDate}, #{progress}, #{lessonDate})
+    </insert>
+
+    <select id="findByStudentId" resultMap="orderDtoResultMap">
+        SELECT *
+        FROM lesson_buy lb
+                 JOIN lesson l
+                      ON lb.teacherid = l.teacherid
+        WHERE studentid = #{studentId}
+    </select>
+</mapper>

@@ -43,7 +43,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-    <a class="navbar-brand" href="/"><img src="/static/images/icon.png" width="40">홈페이지 로고</a>
+    <a class="navbar-brand" href="/"><img src="/static/images/icon.png" width="40">내일 과외</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -134,6 +134,30 @@
         </c:if>
     </form>
 
+    <h1 class="mb-4">나의 수업 목록</h1>
+    <c:if test="${empty orderDtoList}">
+        <div class="alert alert-info">등록된 수업이 없습니다.</div>
+    </c:if>
+    <c:if test="${not empty orderDtoList}">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>강의명</th>
+                <th>강의 시작일</th>
+                <th>진행도</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="order" items="${orderDtoList}">
+                <tr>
+                    <td>${order.lessonName}</td>
+                    <td>${order.firstDate}</td>
+                    <td>${order.progress}</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </c:if>
 
 </div>
 

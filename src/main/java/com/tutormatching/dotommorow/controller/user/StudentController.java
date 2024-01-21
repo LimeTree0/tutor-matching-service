@@ -1,9 +1,11 @@
 package com.tutormatching.dotommorow.controller.user;
 
+import com.tutormatching.dotommorow.dto.order.OrderDto;
 import com.tutormatching.dotommorow.dto.user.student.StudentDto;
 import com.tutormatching.dotommorow.dto.user.student.StudentSaveDto;
 import com.tutormatching.dotommorow.dto.user.student.StudentUpdateDto;
 import com.tutormatching.dotommorow.dto.user.user.UserDto;
+import com.tutormatching.dotommorow.service.order.OrderService;
 import com.tutormatching.dotommorow.service.user.StudentService;
 import com.tutormatching.dotommorow.service.user.UserService;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 
 /**
@@ -27,6 +30,7 @@ public class StudentController {
 
     private final StudentService studentService;
     private final UserService userService;
+    private final OrderService orderService;
 
     // 학생 정보 등록폼
     @GetMapping("/student")
@@ -37,11 +41,15 @@ public class StudentController {
 
         StudentDto studentDto = studentService.findById(userId);
 
+        // 학생 정보가 있으면 true, 없으면 false
         boolean isExist = false;
         if (studentDto != null) {
             isExist = true;
             model.addAttribute("studentDto", studentDto);
             log.info("studentDto: {}", studentDto);
+            List<OrderDto> orderDtoList = orderService.findByStudentId(studentDto.getStudentId());
+            model.addAttribute("orderDtoList", orderDtoList);
+
         } else {
             model.addAttribute("studentDto", new StudentDto());
         }

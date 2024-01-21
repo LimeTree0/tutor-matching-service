@@ -43,7 +43,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-    <a class="navbar-brand" href="/"><img src="/static/images/icon.png" width="40">홈페이지 로고</a>
+    <a class="navbar-brand" href="/"><img src="/static/images/icon.png" width="40">내일 과외</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -74,7 +74,7 @@
 
 <div class="content">
     <h1 class="mb-4"  class="circle-image">마이페이지</h1>
-    <div class="mb-4"><img src="${filePath}" class="img-fluid"></div>
+    <div class="mb-4"><img src="${filePath}" height="50px"></div>
     <form>
         <div class="form-group">
             <label for="userId">userId:</label>
@@ -126,8 +126,8 @@
     </form>
 
     <div class="mt-4">
-        <a href="http://localhost:8080/user/student" class="btn btn-link" role="button">학생 페이지</a>
-        <a href="http://localhost:8080/user/teacher" class="btn btn-link" role="button">선생님 페이지</a>
+        <a href="http://localhost:8080/user/student" class="btn btn-primary" role="button">학생 페이지</a>
+        <a href="http://localhost:8080/user/teacher" class="btn btn-secondary" role="button">선생님 페이지</a>
     </div>
 
 </div>
