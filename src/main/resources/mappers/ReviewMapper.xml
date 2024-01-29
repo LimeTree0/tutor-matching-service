@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tutormatching.dotommorow.repository.mapper.review.ReviewMapper">
+
+    <parameterMap id="ReviewDtoParameterMap" type="com.tutormatching.dotommorow.dto.review.ReviewDto">
+        <parameter property="reviewId"/>
+        <parameter property="studentId"/>
+        <parameter property="classId"/>
+        <parameter property="review"/>
+        <parameter property="grade"/>
+        <parameter property="reviewDate"/>
+    </parameterMap>
+
+    <resultMap id="ReviewResponseDtoResultMap" type="com.tutormatching.dotommorow.dto.review.ReviewResponseDto">
+        <id property="reviewId" column="reviewid"/>
+        <result property="classId" column="classid"/>
+        <result property="studentId" column="studentid"/>
+        <result property="userId" column="userid"/>
+        <result property="review" column="review"/>
+        <result property="grade" column="grade"/>
+        <result property="reviewDate" column="review_date"/>
+    </resultMap>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="reviewId" parameterMap="ReviewDtoParameterMap">
+        INSERT INTO review(studentid, classid, review, grade, review_date)
+        VALUES (#{studentId}, #{classId}, #{review}, #{grade}, #{reviewDate})
+    </insert>
+
+    <select id="findByClassId" resultMap="ReviewResponseDtoResultMap">
+        SELECT *
+        FROM review join student on review.studentid = student.studentid
+                    join users on student.userid = users.userid
+        WHERE classid = #{classId}
+    </select>
+
+    <delete id="deleteByReviewId">
+        DELETE FROM review
+        WHERE reviewid = #{reviewId}
+    </delete>
+
+</mapper>

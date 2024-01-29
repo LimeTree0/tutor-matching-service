@@ -1,8 +1,10 @@
 package com.tutormatching.dotommorow;
 
+import com.tutormatching.dotommorow.dto.lesson.LessonSaveDto;
 import com.tutormatching.dotommorow.dto.user.student.StudentSaveDto;
 import com.tutormatching.dotommorow.dto.user.teacher.TeacherSaveDto;
 import com.tutormatching.dotommorow.dto.user.user.UserJoinDto;
+import com.tutormatching.dotommorow.service.lesson.LessonService;
 import com.tutormatching.dotommorow.service.user.StudentService;
 import com.tutormatching.dotommorow.service.user.TeacherService;
 import com.tutormatching.dotommorow.service.user.UserService;
@@ -22,6 +24,7 @@ public class DotommorowApplication {
 	private final UserService userService;
 	private final TeacherService teacherService;
 	private final StudentService studentService;
+	private final LessonService lessonService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DotommorowApplication.class, args);
@@ -74,6 +77,19 @@ public class DotommorowApplication {
 		studentSaveDto.setAcademic("대학교");
 
 		studentService.save(studentSaveDto);
+
+		//과외 등록
+		LessonSaveDto lessonSaveDto = new LessonSaveDto();
+		lessonSaveDto.setTeacherId(1);
+		lessonSaveDto.setCategory("수학");
+		lessonSaveDto.setLessonName("수학 과외");
+		lessonSaveDto.setLocation("서울");
+		lessonSaveDto.setPrice(10000);
+		lessonSaveDto.setDescription("수학 과외입니다.");
+		lessonSaveDto.setFtf("Y");
+		lessonSaveDto.setPeopleNumber(30);
+
+		lessonService.save(lessonSaveDto);
 	}
 
 }

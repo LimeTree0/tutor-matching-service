@@ -24,6 +24,8 @@ public interface LessonMapper {
     // 강의 검색
     List<LessonDto> findAllByCondition(@Param("category") String category, @Param("location") String location, @Param("ftf") String ftf);
 
+    List<LessonDto> findAllOrderByAvgGrade();
+
     // 강의 수정
     void update(LessonUpdateDto lessonUpdateDto);
 

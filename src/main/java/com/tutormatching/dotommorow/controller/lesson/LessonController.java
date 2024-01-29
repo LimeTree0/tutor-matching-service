@@ -4,8 +4,10 @@ import com.tutormatching.dotommorow.dto.lesson.LessonConditionDto;
 import com.tutormatching.dotommorow.dto.lesson.LessonDto;
 import com.tutormatching.dotommorow.dto.lesson.LessonSaveDto;
 import com.tutormatching.dotommorow.dto.lesson.LessonUpdateDto;
+import com.tutormatching.dotommorow.dto.review.ReviewResponseDto;
 import com.tutormatching.dotommorow.dto.user.teacher.TeacherDto;
 import com.tutormatching.dotommorow.service.lesson.LessonService;
+import com.tutormatching.dotommorow.service.review.ReviewService;
 import com.tutormatching.dotommorow.service.user.TeacherService;
 import com.tutormatching.dotommorow.util.FileUploadUtil;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +31,7 @@ public class LessonController {
     private final LessonService lessonService;
     private final TeacherService teacherService;
     private final FileUploadUtil fileUploadUtil;
+    private final ReviewService reviewService;
 
     // 강의 등록 페이지 폼
     @GetMapping("/lesson/lessonForm")
@@ -63,9 +66,15 @@ public class LessonController {
 
     // 강의 상세 페이지 폼
     @GetMapping("/lesson/detail/{classId}")
-    public String lessonDetail(@PathVariable("classId") Integer classId, Model model) {
+    public String lessonDetail(@PathVariable("classId") Integer classId,
+                               Model model, Principal principal) {
         LessonDto lessonDto = lessonService.findById(classId);
+        List<ReviewResponseDto> reviewDtoList = reviewService.findByClassId(classId);
         model.addAttribute("lessonDto", lessonDto);
+        model.addAttribute("reviewDtoList", reviewDtoList);
+        model.addAttribute("currentUserId", principal.getName());
+
+
         return "lesson/lessonDetailForm";
     }
 

@@ -31,6 +31,11 @@ public class LessonService {
         return lessonRepository.findAllByTeacherId(teacherId);
     }
 
+    // 평점 순으로 강의 조회
+    public List<LessonDto> findAllOrderByAvgGrade() {
+        return lessonRepository.findAllOrderByAvgGrade();
+    }
+
     // 강의 검색
     public List<LessonDto> findAllByCondition(LessonConditionDto lessonConditionDto) {
         return lessonRepository.findAllByCondition(lessonConditionDto);

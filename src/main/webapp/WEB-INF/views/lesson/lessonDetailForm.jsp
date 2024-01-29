@@ -36,7 +36,7 @@
             color: white;
             text-align: center;
             padding: 10px;
-            position: fixed;
+            /*position: fixed;*/
             bottom: 0;
             width: 100%;
         }
@@ -93,8 +93,43 @@
         </div>
     </div>
 
-</div>
+    <div class="container mt-5">
+        <form action="localhost:8080/review" method="POST" class="mb-5">
+            <div class="form-group">
+                <label for="reviewTextarea">리뷰</label>
+                <textarea class="form-control" id="reviewTextarea" name="review" cols="50" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="gradeSelect">별점</label>
+                <select class="form-control" id="gradeSelect" name="grade">
+                    <option value="1">1점</option>
+                    <option value="2">2점</option>
+                    <option value="3">3점</option>
+                    <option value="4">4점</option>
+                    <option value="5" selected>5점</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary" onclick="sendReview()">리뷰 작성</button>
+        </form>
 
+        <!-- 리뷰 목록 -->
+        <c:forEach var="review" items="${reviewDtoList}">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">${review.userId} 학생</h5>
+                    <p class="card-text">리뷰: ${review.review}</p>
+                    <p class="card-text"><small class="text-muted">별점: ${review.grade}</small></p>
+
+                    <c:if test="${review.userId == currentUserId}">
+                        <span hidden="hidden" id="reviewId">${review.reviewId}</span>
+                        <span hidden="hidden" id="studentId">${review.studentId}</span>
+                        <button class="btn btn-primary" value="삭제하기" onclick="deleteReview()">삭제하기</button>
+                    </c:if>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+</div>
 <div class="footer">
     <p>저작권 © 2024 홈페이지 이름. 모든 권리 보유.</p>
 </div>
@@ -121,6 +156,33 @@
                 console.log(response.data);
                 console.log(response);
                 window.open(response.data, "_blank");
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    function sendReview() {
+        let formData = new FormData();
+        formData.append("classId", document.getElementById("lessonId").textContent);
+        formData.append("review", document.querySelector("textarea[name='review']").value);
+        formData.append("grade", document.querySelector("select[name='grade']").value);
+
+        axios.post('http://localhost:8080/review', formData)
+            .then(function (response) {
+                console.log(response);
+                location.href = "http://localhost:8080/lesson/detail/" + document.getElementById("lessonId").textContent;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    function deleteReview() {
+        axios.delete('http://localhost:8080/review/' + document.getElementById("studentId").textContent + '/' + document.getElementById("reviewId").textContent)
+            .then(function (response) {
+                console.log(response);
+                location.href = "http://localhost:8080/lesson/detail/" + document.getElementById("lessonId").textContent;
             })
             .catch(function (error) {
                 console.log(error);

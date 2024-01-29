@@ -19,7 +19,7 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 @Transactional
 @Slf4j
-@PropertySource(value = {"classpath:application-pay.properties"})
+//@PropertySource(value = {"classpath:application-pay.properties"})
 public class KakaoPayService {
     static final String cid = "TC0ONETIME";
     @Value("${kakao.admin.key}")

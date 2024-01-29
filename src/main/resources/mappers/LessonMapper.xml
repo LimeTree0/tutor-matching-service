@@ -88,6 +88,19 @@
         </where>
     </select>
 
+    <select id="findAllOrderByAvgGrade" resultMap="lessonDtoResultMap">
+        SELECT *
+        FROM (
+                 SELECT classid, AVG(grade) AS avg_grade
+                 FROM review
+                 GROUP BY classid
+             ) AS r
+                 JOIN lesson AS l ON r.classid = l.classid
+        ORDER BY r.avg_grade DESC
+            LIMIT 3
+    </select>
+
+
     <update id="update" parameterMap="lessonUpdateDtoParameterMap">
         UPDATE lesson
         SET descriptions  = #{description},

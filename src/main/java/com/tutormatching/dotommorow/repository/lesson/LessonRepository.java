@@ -34,6 +34,11 @@ public class LessonRepository {
         return lessonMapper.findAllByTeacherId(teacherId);
     }
 
+    // 평점 순으로 강의 조회
+    public List<LessonDto> findAllOrderByAvgGrade() {
+        return lessonMapper.findAllOrderByAvgGrade();
+    }
+
     // 강의 검색
     public List<LessonDto> findAllByCondition(LessonConditionDto lessonConditionDto) {
         String category = lessonConditionDto.getCategory();

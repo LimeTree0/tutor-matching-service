@@ -30,11 +30,22 @@ public class HomeController {
             lessonDto.setFilePath(fullPath);
         });
 
+        List<LessonDto> recommendLessonDtoList = lessonService.findAllOrderByAvgGrade();
+        recommendLessonDtoList.forEach(lessonDto -> {
+            String fullPath = fileUploadUtil.getFullPath(lessonDto.getUserProfileImageName());
+            lessonDto.setFilePath(fullPath);
+        });
+
         if (lessonDtoList.size() == 0) {
             log.info("lessonDtoList is empty");
         }
 
+        if (recommendLessonDtoList.size() == 0) {
+            log.info("recommendLessonDtoList is empty");
+        }
+
         model.addAttribute("lessonDtoList", lessonDtoList);
+        model.addAttribute("recommendLessonDtoList", recommendLessonDtoList);
         return "index";
     }
 }

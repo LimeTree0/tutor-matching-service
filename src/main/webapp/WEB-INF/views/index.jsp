@@ -34,7 +34,7 @@
             color: white;
             text-align: center;
             padding: 10px;
-            position: fixed;
+            /*position: fixed;*/
             bottom: 0;
             width: 100%;
         }
@@ -78,6 +78,30 @@
 
 <%--    컨텐츠 영역--%>
 <div class="content">
+
+    <h2>추천 강의</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <c:if test="${not empty recommendLessonDtoList}">
+            <c:forEach var="lessonDto" items="${recommendLessonDtoList}">
+
+                <div class="col">
+                    <div class="card h-60">
+                        <a href="http://localhost:8080/lesson/detail/${lessonDto.classId}">
+                            <img src="${lessonDto.filePath}" class="card-img-top circle-image" alt="..." width="50"></a>
+                        <div class="card-body">
+                            <h5 class="card-title">${lessonDto.teacherName}</h5>
+                            <p class="card-text">${lessonDto.lessonName}</p>
+                            <p class="card-text">${lessonDto.category}</p>
+                            <p class="card-text">${lessonDto.location}</p>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </c:if>
+    </div>
+
+
+
     <form action="/lesson/lessonList" method="get" class="form-inline">
         <div class="form-group mb-2 d-inline">
             <label for="category" class="sr-only">카테고리</label>
